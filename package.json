@@ -2,11 +2,11 @@
   "name": "translate",
   "description": "Translate text to different languages on node.js and the browser",
   "main": "translate.min.js",
-  "version": "1.0.1",
-  "author": "Francisco Presencia",
+  "version": "1.0.2",
+  "author": "Francisco Presencia <public@francisco.io> (https://francisco.io/)",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Marak/translate.js.git"
+    "url": "https://github.com/franciscop/translate"
   },
   "scripts": {
     "start": "npm run watch # Start ~= Start dev",
