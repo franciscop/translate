@@ -116,7 +116,7 @@ If you are in Node.js, this likely comes from an environment variable:
 // ... include translate
 
 translate.engine = 'google';
-translation.key = process.env.TRANSLATE_KEY;
+translate.key = process.env.TRANSLATE_KEY;
 
 // ... use translate()
 ```
