@@ -1,21 +1,16 @@
 # Translate
 
-Convert text to different languages on node.js and the browser. Flexible package and powerful back-end using Google (default), Yandex or Bing(not yet):
+Convert text to different languages on Node.js and the browser. Flexible package and powerful back-end using Google (default) or Yandex:
 
 ```js
-// 'es' can be a language string or an object like { to: 'es' }
-translate('Hello world', 'es').then(text => {
+// async/await. Options can be a language name (ISO 639)
+const text = await translate('Hello world', 'es');
+console.log(text);  // Hola mundo
+
+// Promises with .then(). Options can also be an object
+translate('こんにちは世界', { from: 'ja', to: 'es' }).then(text => {
   console.log(text);  // Hola mundo
 });
-```
-
-Example with an async workflow:
-
-```js
-const whatever = async () => {
-  const text = await translate('こんにちは世界', { from: 'ja', to: 'es' });
-  console.log(text);  // Hola mundo
-};
 ```
 
 
@@ -33,7 +28,8 @@ npm install translate
 Then import it to use it:
 
 ```js
-const translate = require('translate');
+const translate = require('translate'); // Old school
+import translate from 'translate';      // New wave
 ```
 
 To use it in the browser download the main `translate.min.js` file and include it:
@@ -42,10 +38,10 @@ To use it in the browser download the main `translate.min.js` file and include i
 <script src="translate.min.js"></script>
 ```
 
-Or use the awesome [unpkg](https://unpkg.com/) **CDN**:
+Or use the awesome [Jsdelivr  **CDN**](https://www.jsdelivr.com/package/npm/translate):
 
 ```html
-<script src="https://unpkg.com/translate@1"></script>
+<script src="https://cdn.jsdelivr.net/npm/translate@1.0.3/translate.min.js"></script>
 ```
 
 After including translate the usage is similar for both Node.js and the browser.
