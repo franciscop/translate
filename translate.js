@@ -601,7 +601,8 @@ const Translate = function (options = {}) {
     opts.id = opts.id || `${opts.from}:${opts.to}:${opts.engine}:${opts.text}`;
     opts.keys = opts.keys || translate.keys || {};
     for (let name in translate.keys) {
-      opts.keys[name] = opts.keys[name];
+      // The options has stronger preference than the global value
+      opts.keys[name] = opts.keys[name] || translate.keys[name];
     }
     opts.key = opts.key || translate.key || opts.keys[opts.engine];
 

@@ -214,6 +214,14 @@ describe('Independent', () => {
     inst = new translate.Translate();
     expect(inst.from).toBe('en');
   });
+
+  it('fixed the bug #5', async () => {
+    // translate.keys = { google: 'abc' };
+    const options = { to: 'ja', keys: { yandex: 'def' }, engine: 'google' };
+
+    // This will wrongly ignore the key for "google"
+    expect(await translate('Hello world', options)).toBe('こんにちは世界');
+  })
 });
 
 
