@@ -57,8 +57,8 @@ The second parameter is the options. It accepts either a `String` of the languag
 - **`to`**: the string of the language to translate to. It can be in any of the two ISO 639 (1 or 2) or the full name in English like `Spanish`. Defaults to **en**.
 - **`from`**: the string of the language to translate to. It can be in any of the two ISO 639 (1 or 2) or the full name in English like `Spanish`. Also defaults to **en**.
 - **`cache`**: a `Number` with the milliseconds that each translation should be cached. Leave it undefined to cache it indefinitely (until a server/browser restart).
-- **`engine`**: a `String` containing the name of the engine to use for translation. Right now it defaults to `google`. Read more [in the engine section](#engine).
-- **`key`**: the API Key for the engine of your choice. Read more [in the engine section](#engine).
+- **`engine`**: a `String` containing the name of the engine to use for translation. Right now it defaults to `google`. Read more [in the engine section](#engines).
+- **`key`**: the API Key for the engine of your choice. Read more [in the engine section](#engines).
 
 Examples:
 
@@ -95,7 +95,7 @@ Several translating engines are available to translate your text:
 
 > To get the API Key you will be signing some contract with these services; it's your responsibility to follow these and we are not liable if you don't as explained in our MIT License.
 
-Once you get the API key and if you are only going to be using an engine (very likely), we recommend setting this globally for your whole project:
+Once you get the API key and if you are only going to be using one engine (very likely), we recommend setting this globally for your whole project:
 
 ```js
 // ... include translate
