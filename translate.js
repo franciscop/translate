@@ -341,7 +341,7 @@ var language = name => {
 const google = {
   needkey: true,
   fetch: ({ key, from, to, text }) => [
-    `https://translation.googleapis.com/language/translate/v2?key=${key}&source=${from}&target=${to}&q=${encodeURIComponent(text)}`,
+    `https://translation.googleapis.com/language/translate/v2?access_token=${key}&source=${from}&target=${to}&q=${encodeURIComponent(text)}`,
     { method: 'POST' }
   ],
   parse: res => res.json().then(body => {
