@@ -4,6 +4,7 @@
   "main": "translate.min.js",
   "version": "1.0.3",
   "author": "Francisco Presencia <public@francisco.io> (https://francisco.io/)",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/franciscop/translate"
