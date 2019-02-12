@@ -41,7 +41,7 @@ To use it in the browser download the main `translate.min.js` file and include i
 Or use the awesome [Jsdelivr  **CDN**](https://www.jsdelivr.com/package/npm/translate):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/translate@1.0.3/translate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/translate@1/translate.min.js"></script>
 ```
 
 After including translate the usage is similar for both Node.js and the browser.
@@ -147,8 +147,12 @@ const route = async ctx => {
 
 
 
-## Authors
+## Authors and thanks
 
 Current package and development: [Francisco Presencia](https://francisco.io/)
 
 Original package and idea: Andrew Lunny (alunny), Marak Squires, Google
+
+Testing in Internet Explorer supported by BrowserStack:
+
+![BrowserStack logo](https://i.imgur.com/CuCuOkL.png)
