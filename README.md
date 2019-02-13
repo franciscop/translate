@@ -155,4 +155,4 @@ Original package and idea: Andrew Lunny (alunny), Marak Squires, Google
 
 Testing in Internet Explorer supported by BrowserStack:
 
-![BrowserStack logo](https://i.imgur.com/CuCuOkL.png)
+[![BrowserStack logo](https://i.imgur.com/CuCuOkL.png)](https://browserstack.com/)
