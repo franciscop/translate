@@ -2,7 +2,7 @@
 // Translate text into different languages;
 
 // Load a language parser to allow for more flexibility in the language choice
-import language from './language';
+import language from './languages';
 
 // Load the default engines for translation
 import engines from './engines';
@@ -32,8 +32,8 @@ const Translate = function (options = {}) {
     // Note: not all of those *should* be documented since some are internal only
     if (typeof opts === 'string') opts = { to: opts };
     opts.text = text;
-    opts.from = language(opts.from || translate.from);
-    opts.to = language(opts.to || translate.to);
+    opts.from = language(opts.from || translate.from, opts.engine || translate.engine);
+    opts.to = language(opts.to || translate.to, opts.engine || translate.engine);
     opts.cache = opts.cache || translate.cache;
     opts.engines = opts.engines || {};
     opts.engine = opts.engine || translate.engine;

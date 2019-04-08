@@ -2,3 +2,5 @@
 node_modules
 coverage
 package-lock.json
+data/google.js
+data/yandex.js

@@ -58,37 +58,31 @@ describe('language parsing', () => {
   });
 
   it('works with a good language name', () => {
-    expect(language('Spanish')).toBe('es');
+    expect(language('Spanish', 'google')).toBe('es');
   });
 
   it('works with the plain ISO', () => {
-    expect(language('es')).toBe('es');
-    expect(language('ja')).toBe('ja');
-    expect(language('en')).toBe('en');
-  });
-
-  it('works with the alternative ISO 639-2', () => {
-    expect(language('spa')).toBe('es');
-    expect(language('jpn')).toBe('ja');
-    expect(language('eng')).toBe('en');
+    expect(language('es', 'google')).toBe('es');
+    expect(language('ja', 'google')).toBe('ja');
+    expect(language('en', 'google')).toBe('en');
   });
 
   it('works with diferent casing', () => {
-    expect(language('spanish')).toBe('es');
-    expect(language('SpANisH')).toBe('es');
-    expect(language('SPANISH')).toBe('es');
+    expect(language('spanish', 'google')).toBe('es');
+    expect(language('SpANisH', 'google')).toBe('es');
+    expect(language('SPANISH', 'google')).toBe('es');
   });
 
   it('throws with an invalid language name type', () => {
-    expect(() => language(20)).toThrow();
+    expect(() => language(20, 'google')).toThrow();
   });
 
   it('throws with a language name too long', () => {
-    expect(() => language('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')).toThrow();
+    expect(() => language('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'google')).toThrow();
   });
 
   it('throws with a wrong language name', () => {
-    expect(() => language('asdfghjddas')).toThrow();
+    expect(() => language('asdfghjddas', 'google')).toThrow();
   });
 
   it('works with fuzzy strings', () => {
