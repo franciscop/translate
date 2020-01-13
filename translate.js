@@ -554,25 +554,25 @@ exp$2.Cache = Cache;
 // Load the default engines for translation
 // Cache the different translations to avoid resending requests
 // Main function
-const Translate = function (options = {}) {
+const Translate = function(options = {}) {
   if (!(this instanceof Translate)) {
     return new Translate(options);
   }
 
   const defaults = {
-    from: 'en',
-    to: 'en',
+    from: "en",
+    to: "en",
     cache: undefined,
     language: language,
     engines: engines,
-    engine: 'google',
+    engine: "google",
     keys: {}
   };
 
   const translate = (text, opts = {}) => {
     // Load all of the appropriate options (verbose but fast)
     // Note: not all of those *should* be documented since some are internal only
-    if (typeof opts === 'string') opts = { to: opts };
+    if (typeof opts === "string") opts = { to: opts };
     opts.text = text;
     opts.from = language(opts.from || translate.from);
     opts.to = language(opts.to || translate.to);
@@ -602,12 +602,14 @@ const Translate = function (options = {}) {
     }
 
     // Will load only for Node.js and use the native function on the browser
-    if (typeof fetch === 'undefined') {
-      global.fetch = require('node-fetch');
+    if (typeof fetch === "undefined") {
+      global.fetch = require("node-fetch");
     }
 
     if (engine.needkey && !opts.key) {
-      throw new Error(`The engine "${opts.engine}" needs a key, please provide it`);
+      throw new Error(
+        `The engine "${opts.engine}" needs a key, please provide it`
+      );
     }
 
     const fetchOpts = engine.fetch(opts);
@@ -617,11 +619,11 @@ const Translate = function (options = {}) {
   };
 
   for (let key in defaults) {
-    translate[key] = typeof options[key] === 'undefined' ? defaults[key] : options[key];
+    translate[key] =
+      typeof options[key] === "undefined" ? defaults[key] : options[key];
   }
   return translate;
 };
-
 
 // Small hack needed for Webpack/Babel: https://github.com/webpack/webpack/issues/706
 const exp = new Translate();
