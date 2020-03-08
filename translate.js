@@ -603,7 +603,11 @@ const Translate = function(options = {}) {
 
     // Will load only for Node.js and use the native function on the browser
     if (typeof fetch === "undefined") {
-      global.fetch = require("node-fetch");
+      try {
+        global.fetch = require("node-fetch");
+      } catch (error) {
+        console.warn("Please make sure node-fetch is available");
+      }
     }
 
     if (engine.needkey && !opts.key) {
