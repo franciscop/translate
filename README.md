@@ -1,19 +1,17 @@
 # Translate
 
-Convert text to different languages on Node.js and the browser. Flexible package and powerful back-end using Google (default) or Yandex:
+Convert text to different languages on Node.js and the browser. Flexible package and powerful back-end using Google (default), Yandex or [Libre](https://libretranslate.com/):
 
 ```js
 // async/await. Options can be a language name (ISO 639)
-const text = await translate('Hello world', 'es');
-console.log(text);  // Hola mundo
+const text = await translate("Hello world", "es");
+console.log(text); // Hola mundo
 
 // Promises with .then(). Options can also be an object
-translate('こんにちは世界', { from: 'ja', to: 'es' }).then(text => {
-  console.log(text);  // Hola mundo
+translate("こんにちは世界", { from: "ja", to: "es" }).then(text => {
+  console.log(text); // Hola mundo
 });
 ```
-
-
 
 ## Getting started
 
@@ -28,8 +26,8 @@ npm install translate
 Then import it to use it:
 
 ```js
-const translate = require('translate'); // Old school
-import translate from 'translate';      // New wave
+const translate = require("translate"); // Old school
+import translate from "translate"; // New wave
 ```
 
 To use it in the browser download the main `translate.min.js` file and include it:
@@ -38,15 +36,13 @@ To use it in the browser download the main `translate.min.js` file and include i
 <script src="translate.min.js"></script>
 ```
 
-Or use the awesome [Jsdelivr  **CDN**](https://www.jsdelivr.com/package/npm/translate):
+Or use the awesome [Jsdelivr **CDN**](https://www.jsdelivr.com/package/npm/translate):
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/translate@1/translate.min.js"></script>
 ```
 
 After including translate the usage is similar for both Node.js and the browser.
-
-
 
 ## Options
 
@@ -64,26 +60,23 @@ Examples:
 
 ```js
 // Translate from English (default) to Spanish (specified)
-const foo = await translate('Hello world', 'es');
+const foo = await translate("Hello world", "es");
 
 // Same as this:
-const bar = await translate('Hello world', { to: 'es' });
+const bar = await translate("Hello world", { to: "es" });
 ```
 
 > On both `to` and `from` defaulting to `en`: while I _am_ Spanish and was quite tempted to set this as one of those, English is the main language of the Internet and the main secondary language for those who have a different native language. This is why most of the translations will happen either to or from English.
-
 
 ### Default options
 
 You can change the default options for anything by calling the root library and the option name:
 
 ```js
-translate.from = 'es';
+translate.from = "es";
 ```
 
 This can be applied to any of the options enumerated above.
-
-
 
 ## Engines
 
@@ -91,6 +84,7 @@ Several translating engines are available to translate your text:
 
 - **`google`**: ([demo](https://translate.google.com/) | [docs](https://cloud.google.com/translate/docs/)): Google Translate.
 - **`yandex`**: ([demo](https://translate.yandex.com/) | [docs](https://tech.yandex.com/translate/) | [API Key](https://translate.yandex.com/developers/keys)): Yandex Translate
+- **`libre`**: ([demo](https://libretranslate.com/)): An independent translation engine. No key needed.
 
 > To get the API Key you will be signing some contract with these services; it's your responsibility to follow these and we are not liable if you don't as explained in our MIT License.
 
@@ -99,8 +93,8 @@ Once you get the API key and if you are only going to be using one engine (very 
 ```js
 // ... include translate
 
-translate.engine = 'google';
-translate.key = 'YOUR-KEY-HERE';
+translate.engine = "google";
+translate.key = "YOUR-KEY-HERE";
 
 // ... use translate()
 ```
@@ -110,20 +104,17 @@ If you are in Node.js, this likely comes from an environment variable:
 ```js
 // ... include translate
 
-translate.engine = 'google';
+translate.engine = "google";
 translate.key = process.env.TRANSLATE_KEY;
 
 // ... use translate()
 ```
 
-
 To pass it per-translation, you can add it to your arguments:
 
 ```js
-translate('Hello world', { to: 'en', engine: 'google', key: 'YOUR-KEY-HERE' });
+translate("Hello world", { to: "en", engine: "google", key: "YOUR-KEY-HERE" });
 ```
-
-
 
 ## Promises
 
@@ -131,21 +122,19 @@ Working with Promises and specially with [async/await](https://ponyfoo.com/artic
 
 ```js
 // Browser; jQuery for demonstration purposes
-$('#translate').submit(async e => {
+$("#translate").submit(async e => {
   e.preventDefault();
-  const text = $('.text').text();
-  const spanish = await translate(text, { to: 'es' });
+  const text = $(".text").text();
+  const spanish = await translate(text, { to: "es" });
   alert(spanish);
 });
 
 // Node.js; serverjs.io example for demonstration purposes
 const route = async ctx => {
-  const spanish = await translate(ctx.body, { to: 'es' });
+  const spanish = await translate(ctx.body, { to: "es" });
   return send(spanish);
 };
 ```
-
-
 
 ## Authors and thanks
 
