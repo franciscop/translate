@@ -372,9 +372,11 @@ const libre = {
   ],
   parse: res =>
     res.json().then(body => {
-      console.log(body);
       if (!body) {
         throw new Error("No response found");
+      }
+      if (body.error) {
+        throw new Error(body.error);
       }
       return body.translatedText;
     })
