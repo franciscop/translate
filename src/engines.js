@@ -48,7 +48,8 @@ const libre = {
       body: JSON.stringify({
         q: text,
         source: from,
-        target: to
+        target: to,
+        api_key: key
       }),
       headers: { "Content-Type": "application/json" }
     }
