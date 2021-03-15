@@ -10,6 +10,15 @@ import engines from "./engines";
 // Cache the different translations to avoid resending requests
 import cache from "../lib/cache";
 
+// Will load only for Node.js and use the native function on the browser
+if (typeof fetch === "undefined") {
+  try {
+    global.fetch = require("node-fetch");
+  } catch (error) {
+    console.warn("Please make sure node-fetch is available");
+  }
+}
+
 // Main function
 const Translate = function(options = {}) {
   if (!(this instanceof Translate)) {
@@ -36,7 +45,10 @@ const Translate = function(options = {}) {
     opts.cache = opts.cache || translate.cache;
     opts.engines = opts.engines || {};
     opts.engine = opts.engine || translate.engine;
-    opts.id = opts.id || `${opts.from}:${opts.to}:${opts.engine}:${opts.text}`;
+    opts.url = opts.url || translate.url;
+    opts.id =
+      opts.id ||
+      `${opts.url}:${opts.from}:${opts.to}:${opts.engine}:${opts.text}`;
     opts.keys = opts.keys || translate.keys || {};
     for (let name in translate.keys) {
       // The options has stronger preference than the global value
@@ -56,15 +68,6 @@ const Translate = function(options = {}) {
     // Target is the same as origin, just return the string
     if (opts.to === opts.from) {
       return Promise.resolve(opts.text);
-    }
-
-    // Will load only for Node.js and use the native function on the browser
-    if (typeof fetch === "undefined") {
-      try {
-        global.fetch = require("node-fetch");
-      } catch (error) {
-        console.warn("Please make sure node-fetch is available");
-      }
     }
 
     if (engine.needkey && !opts.key) {

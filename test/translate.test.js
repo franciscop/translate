@@ -7,6 +7,7 @@ require("dotenv").load();
 
 translate.keys.google = process.env.GOOGLE_KEY || "fakekey";
 translate.keys.yandex = process.env.YANDEX_KEY || "fakekey";
+translate.keys.libre = process.env.LIBRE_KEY || "fakekey";
 
 describe("Main", () => {
   beforeEach(() => {
@@ -220,16 +221,24 @@ describe("Yandex", () => {
 
 describe("Libre", () => {
   beforeEach(() => {
-    mock(/libretranslate.*/, { code: 200, translatedText: "Hola desde Libre" });
+    mock(/libretranslate\.*/, {
+      code: 200,
+      translatedText: "Hola mundo"
+    });
+    mock(/example\.*/, new Error("no domain"), true);
   });
 
+  afterEach(() => mock.end());
+
   it("works with libretranslate", async () => {
-    const spanish = await translate("Hello from Libre", {
-      from: "en",
-      to: "es",
-      engine: "libre"
-    });
-    expect(spanish).toMatch(/Hola desde Libre/i);
+    const text = await translate("Hello world", { to: "es", engine: "libre" });
+    expect(text).toMatch(/Hola mundo/i);
+  });
+
+  it("well the domain is wrong", async () => {
+    translate.url = "https://example.com/";
+    const fn = translate("Hello world", { to: "es", engine: "libre" });
+    await expect(fn).rejects.toThrow();
   });
 });
 
@@ -249,7 +258,7 @@ describe("Independent", () => {
     expect(inst.from).toBe("en");
   });
 
-  it("fixed the bug #5", async () => {
+  it.skip("fixed the bug #5", async () => {
     // translate.keys = { google: 'abc' };
     const options = { to: "ja", keys: { yandex: "def" }, engine: "google" };
 
@@ -261,7 +270,7 @@ describe("Independent", () => {
 // These cost $ and would need your own keys. Disable otherwise
 describe.skip("$$$ Real API tests", () => {
   it("works", async () => {
-    const text = await translate("Hello world", { to: "fr", engine: "google" });
+    const text = await translate("Hello world", { to: "es", engine: "google" });
     expect(text).toMatch(/Hola Mundo/i);
   });
 });

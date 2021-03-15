@@ -39,10 +39,12 @@ const yandex = {
     })
 };
 
+const libreUrl = "https://libretranslate.com/translate";
+
 const libre = {
   needkey: false,
-  fetch: ({ key, from, to, text }) => [
-    `https://libretranslate.com/translate`,
+  fetch: ({ url = libreUrl, key, from, to, text }) => [
+    url,
     {
       method: "POST",
       body: JSON.stringify({
