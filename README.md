@@ -55,6 +55,7 @@ The second parameter is the options. It accepts either a `String` of the languag
 - **`cache`**: a `Number` with the milliseconds that each translation should be cached. Leave it undefined to cache it indefinitely (until a server/browser restart).
 - **`engine`**: a `String` containing the name of the engine to use for translation. Right now it defaults to `google`. Read more [in the engine section](#engines).
 - **`key`**: the API Key for the engine of your choice. Read more [in the engine section](#engines).
+- **`url`**: only available for those engines that you can install on your own server (like Libretranslate), allows you to specify a custom endpoint for the translations. [See this issue](https://github.com/franciscop/translate/issues/26#issuecomment-845038821) for more info.
 
 Examples:
 
@@ -84,7 +85,7 @@ Several translating engines are available to translate your text:
 
 - **`google`**: ([demo](https://translate.google.com/) | [docs](https://cloud.google.com/translate/docs/)): Google Translate.
 - **`yandex`**: ([demo](https://translate.yandex.com/) | [docs](https://tech.yandex.com/translate/) | [API Key](https://translate.yandex.com/developers/keys)): Yandex Translate
-- **`libre`**: ([demo](https://libretranslate.com/)): An independent translation engine. No key needed.
+- **`libre`**: ([demo](https://libretranslate.com/)): An independent translation engine. You can use the official website or install on your own server.
 
 > To get the API Key you will be signing some contract with these services; it's your responsibility to follow these and we are not liable if you don't as explained in our MIT License.
 
@@ -114,6 +115,13 @@ To pass it per-translation, you can add it to your arguments:
 
 ```js
 translate("Hello world", { to: "en", engine: "google", key: "YOUR-KEY-HERE" });
+```
+
+Specifically in Libretranslate, you can also add a `url` parameter if you install it on your own server:
+
+```js
+translate.url = "https://example.com/";
+translate.key = process.env.TRANSLATE_KEY;
 ```
 
 ## Promises
