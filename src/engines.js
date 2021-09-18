@@ -70,12 +70,14 @@ const libre = {
 
 const deepl = {
   needkey: true,
-  fetch: ({ key, from, to, text }) => [
-    `https://api-free.deepl.com/v2/translate?auth_key=${key}&source_lang=${from}&target_lang=${to}&text=${encodeURIComponent(
-      text
-    )}`,
-    { method: "POST", body: "" }
-  ],
+  fetch: ({ key, from, to, text }) => {
+    const suffix = /:fx$/.test(key) ? "-free" : "";
+    text = encodeURIComponent(text);
+    return [
+      `https://api${suffix}.deepl.com/v2/translate?auth_key=${key}&source_lang=${from}&target_lang=${to}&text=${text}`,
+      { method: "POST", body: "" }
+    ];
+  },
   parse: async res => {
     if (!res.ok) {
       if (res.status === 403) {
