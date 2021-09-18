@@ -28,17 +28,10 @@ describe("libre full requests", () => {
   });
 
   it("can set a custom URL", async () => {
-    mock.libre("Heeey");
     translate.url = "https://example.com/";
     const opts = { to: "es", engine: "libre" };
     const text = await translate("libre custom url", opts);
     delete translate.url;
-    expect(text).toBe("Heeey");
-    const outUrl = "https://example.com/";
-    expect(fetch).toHaveBeenCalledWith(outUrl, {
-      body: '{"q":"libre custom url","source":"en","target":"es"}',
-      headers: { "Content-Type": "application/json" },
-      method: "POST"
-    });
+    expect(text).toBe("Url personalizada de libre");
   });
 });
