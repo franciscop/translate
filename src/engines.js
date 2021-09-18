@@ -68,4 +68,23 @@ const libre = {
     })
 };
 
-export default { google, yandex, libre };
+const deepl = {
+  needkey: true,
+  fetch: ({ key, from, to, text }) => [
+    `https://api-free.deepl.com/v2/translate?auth_key=${key}&source_lang=${from}&target_lang=${to}&text=${encodeURIComponent(
+      text
+    )}`,
+    { method: "POST", body: "" }
+  ],
+  parse: async res => {
+    if (!res.ok) {
+      if (res.status === 403) {
+        throw new Error("Auth Error, please review the key for DeepL");
+      }
+      throw new Error(`Error ${res.status}`);
+    }
+    return res.json().then(body => body.translations[0].text);
+  }
+};
+
+export default { google, yandex, libre, deepl };
