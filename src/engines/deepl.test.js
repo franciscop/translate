@@ -1,14 +1,14 @@
-import translate from "../src";
+import translate from "../../src";
 import "dotenv/config";
 
-translate.keys.deepl = process.env.DEEPL_KEY;
+translate.keys.deepl = process.env.DEEPL_KEY || "xxx";
 
 describe("deepl full requests", () => {
   it("has an engine", () => {
     expect(translate.engines.deepl).toBeDefined();
   });
 
-  if (!process.env.DEEPL_KEY) {
+  if (!process.env.DEEPL_KEY || process.env.DEEPL_KEY === "xxx") {
     return console.warn("DeepL [PAID] tests skipped");
   }
 

@@ -1,47 +1,29 @@
 // Utility method to mock responses from fetch()
 const fetchMock = require("fetch-mock");
 
-module.exports = (url, content, throws) => {
-  return fetchMock.post(
-    url,
-    () =>
-      new Promise((resolve, reject) => {
-        setTimeout(() => {
-          throws ? reject(content) : resolve(content);
-        }, 500);
-      })
-  );
+const delay = time => new Promise(done => setTimeout(done, time));
+
+const mock = (url, body, { throws } = {}) => {
+  const callback = async () => {
+    await delay(500);
+    if (throws) throw body;
+    return body;
+  };
+
+  fetchMock.getOnce(url, callback, { overwriteRoutes: true });
+  fetchMock.postOnce(url, callback, { overwriteRoutes: true });
 };
 
-const replyOnce = data => {
-  jest.spyOn(global, "fetch");
-  if (data instanceof Error) {
-    global.fetch.mockResolvedValueOnce({
-      ok: false,
-      statusCode: 401,
-      json: async () => data
-    });
-  } else {
-    global.fetch.mockResolvedValueOnce({
-      ok: true,
-      statusCode: 200,
-      json: async () => data
-    });
-  }
+mock.google = (content, opts) => {
+  mock(/googleapis\.com\//, [[[content]]], opts);
 };
 
-module.exports.google = translatedText => {
-  replyOnce({ data: { translations: [{ translatedText }] } });
+mock.libre = (content, opts) => {
+  mock(/libretranslate\.com\//, { code: 200, translatedText: content }, opts);
 };
 
-module.exports.yandex = text => {
-  replyOnce({ code: 200, text: [text] });
+mock.end = () => {
+  fetchMock.resetBehavior();
 };
 
-module.exports.libre = translatedText => {
-  replyOnce({ translatedText });
-};
-
-module.exports.end = () => {
-  fetchMock.restore();
-};
+module.exports = mock;

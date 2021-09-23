@@ -2,13 +2,12 @@
 // Translate text into different languages;
 
 // Load a language parser to allow for more flexibility in the language choice
-import language from "./language";
-
-// Load the default engines for translation
-import engines from "./engines";
+import languages from "./languages/index.js";
 
 // Cache the different translations to avoid resending requests
-import cache from "../lib/cache";
+import cache from "./cache.js";
+
+import engines from "./engines/index.js";
 
 // Will load only for Node.js and use the native function on the browser
 if (typeof fetch === "undefined") {
@@ -29,19 +28,19 @@ const Translate = function(options = {}) {
     from: "en",
     to: "en",
     cache: undefined,
-    language: language,
+    languages: languages,
     engines: engines,
     engine: "google",
     keys: {}
   };
 
-  const translate = (text, opts = {}) => {
+  const translate = async (text, opts = {}) => {
     // Load all of the appropriate options (verbose but fast)
     // Note: not all of those *should* be documented since some are internal only
     if (typeof opts === "string") opts = { to: opts };
     opts.text = text;
-    opts.from = language(opts.from || translate.from);
-    opts.to = language(opts.to || translate.to);
+    opts.from = languages(opts.from || translate.from);
+    opts.to = languages(opts.to || translate.to);
     opts.cache = opts.cache || translate.cache;
     opts.engines = opts.engines || {};
     opts.engine = opts.engine || translate.engine;

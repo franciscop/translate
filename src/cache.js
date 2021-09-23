@@ -1,7 +1,5 @@
 // From https://www.npmjs.com/package/memory-cache (Rollup didn't want to bundle it otherwise)
-'use strict';
-
-function Cache () {
+function Cache() {
   var _cache = Object.create(null);
   var _hitCount = 0;
   var _missCount = 0;
@@ -10,13 +8,19 @@ function Cache () {
 
   this.put = function(key, value, time, timeoutCallback) {
     if (_debug) {
-      console.log('caching: %s = %j (@%s)', key, value, time);
+      console.log("caching: %s = %j (@%s)", key, value, time);
     }
 
-    if (typeof time !== 'undefined' && (typeof time !== 'number' || isNaN(time) || time <= 0)) {
-      throw new Error('Cache timeout must be a positive number');
-    } else if (typeof timeoutCallback !== 'undefined' && typeof timeoutCallback !== 'function') {
-      throw new Error('Cache timeout callback must be a function');
+    if (
+      typeof time !== "undefined" &&
+      (typeof time !== "number" || isNaN(time) || time <= 0)
+    ) {
+      throw new Error("Cache timeout must be a positive number");
+    } else if (
+      typeof timeoutCallback !== "undefined" &&
+      typeof timeoutCallback !== "function"
+    ) {
+      throw new Error("Cache timeout callback must be a function");
     }
 
     var oldRecord = _cache[key];
@@ -32,12 +36,15 @@ function Cache () {
     };
 
     if (!isNaN(record.expire)) {
-      record.timeout = setTimeout(function() {
-        _del(key);
-        if (timeoutCallback) {
-          timeoutCallback(key, value);
-        }
-      }.bind(this), time);
+      record.timeout = setTimeout(
+        function() {
+          _del(key);
+          if (timeoutCallback) {
+            timeoutCallback(key, value);
+          }
+        }.bind(this),
+        time
+      );
     }
 
     _cache[key] = record;
@@ -65,7 +72,7 @@ function Cache () {
     return canDelete;
   };
 
-  function _del(key){
+  function _del(key) {
     _size--;
     delete _cache[key];
   }
@@ -138,7 +145,7 @@ function Cache () {
       var record = _cache[key];
       plainJsCache[key] = {
         value: record.value,
-        expire: record.expire || 'NaN',
+        expire: record.expire || "NaN"
       };
     }
 
@@ -157,7 +164,7 @@ function Cache () {
           var existingRecord = _cache[key];
           if (existingRecord) {
             if (_debug) {
-              console.log('Skipping duplicate imported key \'%s\'', key);
+              console.log("Skipping duplicate imported key '%s'", key);
             }
             continue;
           }

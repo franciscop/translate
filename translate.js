@@ -23,259 +23,412 @@ var iso = [
 ];
 
 var iso2 = {
-  "﻿aar": "aa", "abk": "ab", "afr": "af", "aka": "ak", "alb": "sq", "amh": "am",
-  "ara": "ar", "arg": "an", "arm": "hy", "asm": "as", "ava": "av", "ave": "ae",
-  "aym": "ay", "aze": "az", "bak": "ba", "bam": "bm", "baq": "eu", "bel": "be",
-  "ben": "bn", "bih": "bh", "bis": "bi", "bos": "bs", "bre": "br", "bul": "bg",
-  "bur": "my", "cat": "ca", "cha": "ch", "che": "ce", "chi": "zh", "chu": "cu",
-  "chv": "cv", "cor": "kw", "cos": "co", "cre": "cr", "cze": "cs", "dan": "da",
-  "div": "dv", "dut": "nl", "dzo": "dz", "eng": "en", "epo": "eo", "est": "et",
-  "ewe": "ee", "fao": "fo", "fij": "fj", "fin": "fi", "fre": "fr", "fry": "fy",
-  "ful": "ff", "geo": "ka", "ger": "de", "gla": "gd", "gle": "ga", "glg": "gl",
-  "glv": "gv", "gre": "el", "grn": "gn", "guj": "gu", "hat": "ht", "hau": "ha",
-  "heb": "he", "her": "hz", "hin": "hi", "hmo": "ho", "hrv": "hr", "hun": "hu",
-  "ibo": "ig", "ice": "is", "ido": "io", "iii": "ii", "iku": "iu", "ile": "ie",
-  "ina": "ia", "ind": "id", "ipk": "ik", "ita": "it", "jav": "jv", "jpn": "ja",
-  "kal": "kl", "kan": "kn", "kas": "ks", "kau": "kr", "kaz": "kk", "khm": "km",
-  "kik": "ki", "kin": "rw", "kir": "ky", "kom": "kv", "kon": "kg", "kor": "ko",
-  "kua": "kj", "kur": "ku", "lao": "lo", "lat": "la", "lav": "lv", "lim": "li",
-  "lin": "ln", "lit": "lt", "ltz": "lb", "lub": "lu", "lug": "lg", "mac": "mk",
-  "mah": "mh", "mal": "ml", "mao": "mi", "mar": "mr", "may": "ms", "mlg": "mg",
-  "mlt": "mt", "mon": "mn", "nau": "na", "nav": "nv", "nbl": "nr", "nde": "nd",
-  "ndo": "ng", "nep": "ne", "nno": "nn", "nob": "nb", "nor": "no", "nya": "ny",
-  "oci": "oc", "oji": "oj", "ori": "or", "orm": "om", "oss": "os", "pan": "pa",
-  "per": "fa", "pli": "pi", "pol": "pl", "por": "pt", "pus": "ps", "que": "qu",
-  "roh": "rm", "rum": "ro", "run": "rn", "rus": "ru", "sag": "sg", "san": "sa",
-  "sin": "si", "slo": "sk", "slv": "sl", "sme": "se", "smo": "sm", "sna": "sn",
-  "snd": "sd", "som": "so", "sot": "st", "spa": "es", "srd": "sc", "srp": "sr",
-  "ssw": "ss", "sun": "su", "swa": "sw", "swe": "sv", "tah": "ty", "tam": "ta",
-  "tat": "tt", "tel": "te", "tgk": "tg", "tgl": "tl", "tha": "th", "tib": "bo",
-  "tir": "ti", "ton": "to", "tsn": "tn", "tso": "ts", "tuk": "tk", "tur": "tr",
-  "twi": "tw", "uig": "ug", "ukr": "uk", "urd": "ur", "uzb": "uz", "ven": "ve",
-  "vie": "vi", "vol": "vo", "wel": "cy", "wln": "wa", "wol": "wo", "xho": "xh",
-  "yid": "yi", "yor": "yo", "zha": "za", "zul": "zu"
+  aar: "aa",
+  abk: "ab",
+  afr: "af",
+  aka: "ak",
+  alb: "sq",
+  amh: "am",
+  ara: "ar",
+  arg: "an",
+  arm: "hy",
+  asm: "as",
+  ava: "av",
+  ave: "ae",
+  aym: "ay",
+  aze: "az",
+  bak: "ba",
+  bam: "bm",
+  baq: "eu",
+  bel: "be",
+  ben: "bn",
+  bih: "bh",
+  bis: "bi",
+  bos: "bs",
+  bre: "br",
+  bul: "bg",
+  bur: "my",
+  cat: "ca",
+  cha: "ch",
+  che: "ce",
+  chi: "zh",
+  chu: "cu",
+  chv: "cv",
+  cor: "kw",
+  cos: "co",
+  cre: "cr",
+  cze: "cs",
+  dan: "da",
+  div: "dv",
+  dut: "nl",
+  dzo: "dz",
+  eng: "en",
+  epo: "eo",
+  est: "et",
+  ewe: "ee",
+  fao: "fo",
+  fij: "fj",
+  fin: "fi",
+  fre: "fr",
+  fry: "fy",
+  ful: "ff",
+  geo: "ka",
+  ger: "de",
+  gla: "gd",
+  gle: "ga",
+  glg: "gl",
+  glv: "gv",
+  gre: "el",
+  grn: "gn",
+  guj: "gu",
+  hat: "ht",
+  hau: "ha",
+  heb: "he",
+  her: "hz",
+  hin: "hi",
+  hmo: "ho",
+  hrv: "hr",
+  hun: "hu",
+  ibo: "ig",
+  ice: "is",
+  ido: "io",
+  iii: "ii",
+  iku: "iu",
+  ile: "ie",
+  ina: "ia",
+  ind: "id",
+  ipk: "ik",
+  ita: "it",
+  jav: "jv",
+  jpn: "ja",
+  kal: "kl",
+  kan: "kn",
+  kas: "ks",
+  kau: "kr",
+  kaz: "kk",
+  khm: "km",
+  kik: "ki",
+  kin: "rw",
+  kir: "ky",
+  kom: "kv",
+  kon: "kg",
+  kor: "ko",
+  kua: "kj",
+  kur: "ku",
+  lao: "lo",
+  lat: "la",
+  lav: "lv",
+  lim: "li",
+  lin: "ln",
+  lit: "lt",
+  ltz: "lb",
+  lub: "lu",
+  lug: "lg",
+  mac: "mk",
+  mah: "mh",
+  mal: "ml",
+  mao: "mi",
+  mar: "mr",
+  may: "ms",
+  mlg: "mg",
+  mlt: "mt",
+  mon: "mn",
+  nau: "na",
+  nav: "nv",
+  nbl: "nr",
+  nde: "nd",
+  ndo: "ng",
+  nep: "ne",
+  nno: "nn",
+  nob: "nb",
+  nor: "no",
+  nya: "ny",
+  oci: "oc",
+  oji: "oj",
+  ori: "or",
+  orm: "om",
+  oss: "os",
+  pan: "pa",
+  per: "fa",
+  pli: "pi",
+  pol: "pl",
+  por: "pt",
+  pus: "ps",
+  que: "qu",
+  roh: "rm",
+  rum: "ro",
+  run: "rn",
+  rus: "ru",
+  sag: "sg",
+  san: "sa",
+  sin: "si",
+  slo: "sk",
+  slv: "sl",
+  sme: "se",
+  smo: "sm",
+  sna: "sn",
+  snd: "sd",
+  som: "so",
+  sot: "st",
+  spa: "es",
+  srd: "sc",
+  srp: "sr",
+  ssw: "ss",
+  sun: "su",
+  swa: "sw",
+  swe: "sv",
+  tah: "ty",
+  tam: "ta",
+  tat: "tt",
+  tel: "te",
+  tgk: "tg",
+  tgl: "tl",
+  tha: "th",
+  tib: "bo",
+  tir: "ti",
+  ton: "to",
+  tsn: "tn",
+  tso: "ts",
+  tuk: "tk",
+  tur: "tr",
+  twi: "tw",
+  uig: "ug",
+  ukr: "uk",
+  urd: "ur",
+  uzb: "uz",
+  ven: "ve",
+  vie: "vi",
+  vol: "vo",
+  wel: "cy",
+  wln: "wa",
+  wol: "wo",
+  xho: "xh",
+  yid: "yi",
+  yor: "yo",
+  zha: "za",
+  zul: "zu"
 };
 
 var map = {
-  "afar": "aa",
-  "abkhazian": "ab",
-  "afrikaans": "af",
-  "akan": "ak",
-  "albanian": "sq",
-  "amharic": "am",
-  "arabic": "ar",
-  "aragonese": "an",
-  "armenian": "hy",
-  "assamese": "as",
-  "avaric": "av",
-  "avestan": "ae",
-  "aymara": "ay",
-  "azerbaijani": "az",
-  "bashkir": "ba",
-  "bambara": "bm",
-  "basque": "eu",
-  "belarusian": "be",
-  "bengali": "bn",
+  afar: "aa",
+  abkhazian: "ab",
+  afrikaans: "af",
+  akan: "ak",
+  albanian: "sq",
+  amharic: "am",
+  arabic: "ar",
+  aragonese: "an",
+  armenian: "hy",
+  assamese: "as",
+  avaric: "av",
+  avestan: "ae",
+  aymara: "ay",
+  azerbaijani: "az",
+  bashkir: "ba",
+  bambara: "bm",
+  basque: "eu",
+  belarusian: "be",
+  bengali: "bn",
   "bihari languages": "bh",
-  "bislama": "bi",
-  "tibetan": "bo",
-  "bosnian": "bs",
-  "breton": "br",
-  "bulgarian": "bg",
-  "burmese": "my",
-  "catalan": "ca",
-  "valencian": "ca",
-  "czech": "cs",
-  "chamorro": "ch",
-  "chechen": "ce",
-  "chinese": "zh",
+  bislama: "bi",
+  tibetan: "bo",
+  bosnian: "bs",
+  breton: "br",
+  bulgarian: "bg",
+  burmese: "my",
+  catalan: "ca",
+  valencian: "ca",
+  czech: "cs",
+  chamorro: "ch",
+  chechen: "ce",
+  chinese: "zh",
   "church slavic": "cu",
   "old slavonic": "cu",
   "church slavonic": "cu",
   "old bulgarian": "cu",
   "old church slavonic": "cu",
-  "chuvash": "cv",
-  "cornish": "kw",
-  "corsican": "co",
-  "cree": "cr",
-  "welsh": "cy",
-  "danish": "da",
-  "german": "de",
-  "divehi": "dv",
-  "dhivehi": "dv",
-  "maldivian": "dv",
-  "dutch": "nl",
-  "flemish": "nl",
-  "dzongkha": "dz",
-  "greek": "el",
-  "english": "en",
-  "esperanto": "eo",
-  "estonian": "et",
-  "ewe": "ee",
-  "faroese": "fo",
-  "persian": "fa",
-  "fijian": "fj",
-  "finnish": "fi",
-  "french": "fr",
+  chuvash: "cv",
+  cornish: "kw",
+  corsican: "co",
+  cree: "cr",
+  welsh: "cy",
+  danish: "da",
+  german: "de",
+  divehi: "dv",
+  dhivehi: "dv",
+  maldivian: "dv",
+  dutch: "nl",
+  flemish: "nl",
+  dzongkha: "dz",
+  greek: "el",
+  english: "en",
+  esperanto: "eo",
+  estonian: "et",
+  ewe: "ee",
+  faroese: "fo",
+  persian: "fa",
+  fijian: "fj",
+  finnish: "fi",
+  french: "fr",
   "western frisian": "fy",
-  "fulah": "ff",
-  "georgian": "ka",
-  "gaelic": "gd",
+  fulah: "ff",
+  georgian: "ka",
+  gaelic: "gd",
   "scottish gaelic": "gd",
-  "irish": "ga",
-  "galician": "gl",
-  "manx": "gv",
-  "guarani": "gn",
-  "gujarati": "gu",
-  "haitian": "ht",
+  irish: "ga",
+  galician: "gl",
+  manx: "gv",
+  guarani: "gn",
+  gujarati: "gu",
+  haitian: "ht",
   "haitian creole": "ht",
-  "hausa": "ha",
-  "hebrew": "he",
-  "herero": "hz",
-  "hindi": "hi",
+  hausa: "ha",
+  hebrew: "he",
+  herero: "hz",
+  hindi: "hi",
   "hiri motu": "ho",
-  "croatian": "hr",
-  "hungarian": "hu",
-  "igbo": "ig",
-  "icelandic": "is",
-  "ido": "io",
+  croatian: "hr",
+  hungarian: "hu",
+  igbo: "ig",
+  icelandic: "is",
+  ido: "io",
   "sichuan yi": "ii",
-  "nuosu": "ii",
-  "inuktitut": "iu",
-  "interlingue": "ie",
-  "occidental": "ie",
-  "interlingua": "ia",
-  "indonesian": "id",
-  "inupiaq": "ik",
-  "italian": "it",
-  "javanese": "jv",
-  "japanese": "ja",
-  "kalaallisut": "kl",
-  "greenlandic": "kl",
-  "kannada": "kn",
-  "kashmiri": "ks",
-  "kanuri": "kr",
-  "kazakh": "kk",
+  nuosu: "ii",
+  inuktitut: "iu",
+  interlingue: "ie",
+  occidental: "ie",
+  interlingua: "ia",
+  indonesian: "id",
+  inupiaq: "ik",
+  italian: "it",
+  javanese: "jv",
+  japanese: "ja",
+  kalaallisut: "kl",
+  greenlandic: "kl",
+  kannada: "kn",
+  kashmiri: "ks",
+  kanuri: "kr",
+  kazakh: "kk",
   "central khmer": "km",
-  "kikuyu": "ki",
-  "gikuyu": "ki",
-  "kinyarwanda": "rw",
-  "kirghiz": "ky",
-  "kyrgyz": "ky",
-  "komi": "kv",
-  "kongo": "kg",
-  "korean": "ko",
-  "kuanyama": "kj",
-  "kwanyama": "kj",
-  "kurdish": "ku",
-  "lao": "lo",
-  "latin": "la",
-  "latvian": "lv",
-  "limburgan": "li",
-  "limburger": "li",
-  "limburgish": "li",
-  "lingala": "ln",
-  "lithuanian": "lt",
-  "luxembourgish": "lb",
-  "letzeburgesch": "lb",
+  kikuyu: "ki",
+  gikuyu: "ki",
+  kinyarwanda: "rw",
+  kirghiz: "ky",
+  kyrgyz: "ky",
+  komi: "kv",
+  kongo: "kg",
+  korean: "ko",
+  kuanyama: "kj",
+  kwanyama: "kj",
+  kurdish: "ku",
+  lao: "lo",
+  latin: "la",
+  latvian: "lv",
+  limburgan: "li",
+  limburger: "li",
+  limburgish: "li",
+  lingala: "ln",
+  lithuanian: "lt",
+  luxembourgish: "lb",
+  letzeburgesch: "lb",
   "luba-katanga": "lu",
-  "ganda": "lg",
-  "macedonian": "mk",
-  "marshallese": "mh",
-  "malayalam": "ml",
-  "maori": "mi",
-  "marathi": "mr",
-  "malay": "ms",
-  "malagasy": "mg",
-  "maltese": "mt",
-  "mongolian": "mn",
-  "nauru": "na",
-  "navajo": "nv",
-  "navaho": "nv",
+  ganda: "lg",
+  macedonian: "mk",
+  marshallese: "mh",
+  malayalam: "ml",
+  maori: "mi",
+  marathi: "mr",
+  malay: "ms",
+  malagasy: "mg",
+  maltese: "mt",
+  mongolian: "mn",
+  nauru: "na",
+  navajo: "nv",
+  navaho: "nv",
   "ndebele, south": "nr",
   "south ndebele": "nr",
   "ndebele, north": "nd",
   "north ndebele": "nd",
-  "ndonga": "ng",
-  "nepali": "ne",
+  ndonga: "ng",
+  nepali: "ne",
   "norwegian nynorsk": "nn",
   "nynorsk, norwegian": "nn",
   "norwegian bokmål": "nb",
   "bokmål, norwegian": "nb",
-  "norwegian": "no",
-  "chichewa": "ny",
-  "chewa": "ny",
-  "nyanja": "ny",
-  "occitan": "oc",
-  "ojibwa": "oj",
-  "oriya": "or",
-  "oromo": "om",
-  "ossetian": "os",
-  "ossetic": "os",
-  "panjabi": "pa",
-  "punjabi": "pa",
-  "pali": "pi",
-  "polish": "pl",
-  "portuguese": "pt",
-  "pushto": "ps",
-  "pashto": "ps",
-  "quechua": "qu",
-  "romansh": "rm",
-  "romanian": "ro",
-  "moldavian": "ro",
-  "moldovan": "ro",
-  "rundi": "rn",
-  "russian": "ru",
-  "sango": "sg",
-  "sanskrit": "sa",
-  "sinhala": "si",
-  "sinhalese": "si",
-  "slovak": "sk",
-  "slovenian": "sl",
+  norwegian: "no",
+  chichewa: "ny",
+  chewa: "ny",
+  nyanja: "ny",
+  occitan: "oc",
+  ojibwa: "oj",
+  oriya: "or",
+  oromo: "om",
+  ossetian: "os",
+  ossetic: "os",
+  panjabi: "pa",
+  punjabi: "pa",
+  pali: "pi",
+  polish: "pl",
+  portuguese: "pt",
+  pushto: "ps",
+  pashto: "ps",
+  quechua: "qu",
+  romansh: "rm",
+  romanian: "ro",
+  moldavian: "ro",
+  moldovan: "ro",
+  rundi: "rn",
+  russian: "ru",
+  sango: "sg",
+  sanskrit: "sa",
+  sinhala: "si",
+  sinhalese: "si",
+  slovak: "sk",
+  slovenian: "sl",
   "northern sami": "se",
-  "samoan": "sm",
-  "shona": "sn",
-  "sindhi": "sd",
-  "somali": "so",
+  samoan: "sm",
+  shona: "sn",
+  sindhi: "sd",
+  somali: "so",
   "sotho, southern": "st",
-  "spanish": "es",
-  "castilian": "es",
-  "sardinian": "sc",
-  "serbian": "sr",
-  "swati": "ss",
-  "sundanese": "su",
-  "swahili": "sw",
-  "swedish": "sv",
-  "tahitian": "ty",
-  "tamil": "ta",
-  "tatar": "tt",
-  "telugu": "te",
-  "tajik": "tg",
-  "tagalog": "tl",
-  "thai": "th",
-  "tigrinya": "ti",
-  "tonga": "to",
-  "tswana": "tn",
-  "tsonga": "ts",
-  "turkmen": "tk",
-  "turkish": "tr",
-  "twi": "tw",
-  "uighur": "ug",
-  "uyghur": "ug",
-  "ukrainian": "uk",
-  "urdu": "ur",
-  "uzbek": "uz",
-  "venda": "ve",
-  "vietnamese": "vi",
-  "volapük": "vo",
-  "walloon": "wa",
-  "wolof": "wo",
-  "xhosa": "xh",
-  "yiddish": "yi",
-  "yoruba": "yo",
-  "zhuang": "za",
-  "chuang": "za",
-  "zulu": "zu"
+  spanish: "es",
+  castilian: "es",
+  sardinian: "sc",
+  serbian: "sr",
+  swati: "ss",
+  sundanese: "su",
+  swahili: "sw",
+  swedish: "sv",
+  tahitian: "ty",
+  tamil: "ta",
+  tatar: "tt",
+  telugu: "te",
+  tajik: "tg",
+  tagalog: "tl",
+  thai: "th",
+  tigrinya: "ti",
+  tonga: "to",
+  tswana: "tn",
+  tsonga: "ts",
+  turkmen: "tk",
+  turkish: "tr",
+  twi: "tw",
+  uighur: "ug",
+  uyghur: "ug",
+  ukrainian: "uk",
+  urdu: "ur",
+  uzbek: "uz",
+  venda: "ve",
+  vietnamese: "vi",
+  volapük: "vo",
+  walloon: "wa",
+  wolof: "wo",
+  xhosa: "xh",
+  yiddish: "yi",
+  yoruba: "yo",
+  zhuang: "za",
+  chuang: "za",
+  zulu: "zu"
 };
 
 // Relevant ISO: ISO 639-1 & ISO 639-2. Google uses the ISO 639-1.
@@ -291,15 +444,14 @@ var map = {
 // Language parser
 //   @name: a string to be parsed
 //   @output: the normalized language string
-var language = name => {
-
+var languages = name => {
   // Validate the name string
-  if (typeof name !== 'string') {
-    throw new Error(`The language must be a string, received ${typeof name}`);
+  if (typeof name !== "string") {
+    throw new Error(`The "language" must be a string, received ${typeof name}`);
   }
   // Possible overflow errors
   if (name.length > 100) {
-    throw new Error(`The language must be a string under 100 characters, received ${name.length}`);
+    throw new Error(`The "language" is too long at ${name.length} characters`);
   }
 
   // Let's work with lowercase for everything
@@ -310,108 +462,13 @@ var language = name => {
 
   // Make sure we have the correct name or throw
   if (!iso.includes(name)) {
-    throw new Error(`The name "${name}" is not part of the ISO 639-1 and we couldn't automatically parse it :(`);
+    throw new Error(`The language "${name}" is not part of the ISO 639-1`);
   }
   return name;
 };
 
-// Translation engines
-// Handle different translations differently to allow for extra flexibility
-
-const google = {
-  needkey: true,
-  fetch: ({ key, from, to, text }) => [
-    `https://translation.googleapis.com/language/translate/v2?key=${key}&format=text&source=${from}&target=${to}&q=${encodeURIComponent(
-      text
-    )}`,
-    { method: "POST" }
-  ],
-  parse: res =>
-    res.json().then(body => {
-      if (body.error) {
-        throw new Error(body.error.errors[0].message);
-      }
-      body = body.data.translations[0];
-      if (!body) {
-        throw new Error("Translation not found");
-      }
-      return body.translatedText;
-    })
-};
-
-const yandex = {
-  needkey: true,
-  fetch: ({ key, from, to, text }) => [
-    `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&lang=${from}-${to}&text=${encodeURIComponent(
-      text
-    )}`,
-    { method: "POST", body: "" }
-  ],
-  parse: res =>
-    res.json().then(body => {
-      if (body.code !== 200) {
-        throw new Error(body.message);
-      }
-      return body.text[0];
-    })
-};
-
-const libreUrl = "https://libretranslate.com/translate";
-
-const libre = {
-  needkey: false,
-  fetch: ({ url = libreUrl, key, from, to, text }) => [
-    url,
-    {
-      method: "POST",
-      body: JSON.stringify({
-        q: text,
-        source: from,
-        target: to,
-        api_key: key
-      }),
-      headers: { "Content-Type": "application/json" }
-    }
-  ],
-  parse: res =>
-    res.json().then(body => {
-      if (!body) {
-        throw new Error("No response found");
-      }
-      if (body.error) {
-        throw new Error(body.error);
-      }
-      return body.translatedText;
-    })
-};
-
-const deepl = {
-  needkey: true,
-  fetch: ({ key, from, to, text }) => {
-    const suffix = /:fx$/.test(key) ? "-free" : "";
-    text = encodeURIComponent(text);
-    return [
-      `https://api${suffix}.deepl.com/v2/translate?auth_key=${key}&source_lang=${from}&target_lang=${to}&text=${text}`,
-      { method: "POST", body: "" }
-    ];
-  },
-  parse: async res => {
-    if (!res.ok) {
-      if (res.status === 403) {
-        throw new Error("Auth Error, please review the key for DeepL");
-      }
-      throw new Error(`Error ${res.status}`);
-    }
-    return res.json().then(body => body.translations[0].text);
-  }
-};
-
-var engines = { google, yandex, libre, deepl };
-
 // From https://www.npmjs.com/package/memory-cache (Rollup didn't want to bundle it otherwise)
-'use strict';
-
-function Cache () {
+function Cache() {
   var _cache = Object.create(null);
   var _hitCount = 0;
   var _missCount = 0;
@@ -420,13 +477,19 @@ function Cache () {
 
   this.put = function(key, value, time, timeoutCallback) {
     if (_debug) {
-      console.log('caching: %s = %j (@%s)', key, value, time);
+      console.log("caching: %s = %j (@%s)", key, value, time);
     }
 
-    if (typeof time !== 'undefined' && (typeof time !== 'number' || isNaN(time) || time <= 0)) {
-      throw new Error('Cache timeout must be a positive number');
-    } else if (typeof timeoutCallback !== 'undefined' && typeof timeoutCallback !== 'function') {
-      throw new Error('Cache timeout callback must be a function');
+    if (
+      typeof time !== "undefined" &&
+      (typeof time !== "number" || isNaN(time) || time <= 0)
+    ) {
+      throw new Error("Cache timeout must be a positive number");
+    } else if (
+      typeof timeoutCallback !== "undefined" &&
+      typeof timeoutCallback !== "function"
+    ) {
+      throw new Error("Cache timeout callback must be a function");
     }
 
     var oldRecord = _cache[key];
@@ -442,12 +505,15 @@ function Cache () {
     };
 
     if (!isNaN(record.expire)) {
-      record.timeout = setTimeout(function() {
-        _del(key);
-        if (timeoutCallback) {
-          timeoutCallback(key, value);
-        }
-      }.bind(this), time);
+      record.timeout = setTimeout(
+        function() {
+          _del(key);
+          if (timeoutCallback) {
+            timeoutCallback(key, value);
+          }
+        }.bind(this),
+        time
+      );
     }
 
     _cache[key] = record;
@@ -475,7 +541,7 @@ function Cache () {
     return canDelete;
   };
 
-  function _del(key){
+  function _del(key) {
     _size--;
     delete _cache[key];
   }
@@ -548,7 +614,7 @@ function Cache () {
       var record = _cache[key];
       plainJsCache[key] = {
         value: record.value,
-        expire: record.expire || 'NaN',
+        expire: record.expire || "NaN"
       };
     }
 
@@ -567,7 +633,7 @@ function Cache () {
           var existingRecord = _cache[key];
           if (existingRecord) {
             if (_debug) {
-              console.log('Skipping duplicate imported key \'%s\'', key);
+              console.log("Skipping duplicate imported key '%s'", key);
             }
             continue;
           }
@@ -600,11 +666,97 @@ function Cache () {
 const exp$2 = new Cache();
 exp$2.Cache = Cache;
 
+const base = "https://translate.googleapis.com/translate_a/single";
+
+var google = {
+  fetch: ({ key, from, to, text }) => [
+    `${base}?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURI(text)}`
+  ],
+  parse: res =>
+    res.json().then(body => {
+      body = body && body[0] && body[0][0] && body[0][0][0];
+      if (!body) throw new Error("Translation not found");
+      return body;
+    })
+};
+
+var yandex = {
+  needkey: true,
+  fetch: ({ key, from, to, text }) => [
+    `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&lang=${from}-${to}&text=${encodeURIComponent(
+      text
+    )}`,
+    { method: "POST", body: "" }
+  ],
+  parse: res =>
+    res.json().then(body => {
+      if (body.code !== 200) {
+        throw new Error(body.message);
+      }
+      return body.text[0];
+    })
+};
+
+const libreUrl = "https://libretranslate.com/translate";
+
+var libre = {
+  needkey: false,
+  fetch: ({ url = libreUrl, key, from, to, text }) => {
+    const body = JSON.stringify({
+      q: text,
+      source: from,
+      target: to,
+      api_key: key
+    });
+    const headers = { "Content-Type": "application/json" };
+
+    return [url, { method: "POST", body, headers }];
+  },
+  parse: res =>
+    res.json().then(body => {
+      if (!body) {
+        throw new Error("No response found");
+      }
+      if (body.error) {
+        throw new Error(body.error);
+      }
+      if (!body.translatedText) {
+        throw new Error("No response found");
+      }
+      return body.translatedText;
+    })
+};
+
+var deepl = {
+  needkey: true,
+  fetch: ({ key, from, to, text }) => {
+    const suffix = /:fx$/.test(key) ? "-free" : "";
+    text = encodeURIComponent(text);
+    return [
+      `https://api${suffix}.deepl.com/v2/translate?auth_key=${key}&source_lang=${from}&target_lang=${to}&text=${text}`,
+      { method: "POST", body: "" }
+    ];
+  },
+  parse: async res => {
+    if (!res.ok) {
+      if (res.status === 403) {
+        throw new Error("Auth Error, please review the key for DeepL");
+      }
+      throw new Error(`Error ${res.status}`);
+    }
+    return res.json().then(body => body.translations[0].text);
+  }
+};
+
+// Translation engines
+// Handle different translations differently to allow for extra flexibility
+
+var engines = { google, yandex, libre, deepl };
+
 // translate.js
 // Translate text into different languages;
 
 // Load a language parser to allow for more flexibility in the language choice
-// Load the default engines for translation
 // Cache the different translations to avoid resending requests
 // Will load only for Node.js and use the native function on the browser
 if (typeof fetch === "undefined") {
@@ -625,19 +777,19 @@ const Translate = function(options = {}) {
     from: "en",
     to: "en",
     cache: undefined,
-    language: language,
+    languages: languages,
     engines: engines,
     engine: "google",
     keys: {}
   };
 
-  const translate = (text, opts = {}) => {
+  const translate = async (text, opts = {}) => {
     // Load all of the appropriate options (verbose but fast)
     // Note: not all of those *should* be documented since some are internal only
     if (typeof opts === "string") opts = { to: opts };
     opts.text = text;
-    opts.from = language(opts.from || translate.from);
-    opts.to = language(opts.to || translate.to);
+    opts.from = languages(opts.from || translate.from);
+    opts.to = languages(opts.to || translate.to);
     opts.cache = opts.cache || translate.cache;
     opts.engines = opts.engines || {};
     opts.engine = opts.engine || translate.engine;
