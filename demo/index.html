@@ -1,0 +1,22 @@
+<!-- Small manual front-end test to see it all works -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Translate example</title>
+  </head>
+  <body>
+    <p class="greeting">Loading...</p>
+
+    <script src="/translate.min.js"></script>
+    <script>
+      (async () => {
+        const text = await translate("Hello world", "es");
+        const el = document.querySelector(".greeting");
+        el.innerText = `Hello world => ${text}`;
+      })();
+    </script>
+  </body>
+</html>

@@ -5,8 +5,8 @@ Convert text to different languages on Node.js and the browser. Flexible package
 ```js
 import translate from "translate";
 
-translate.engine = "google"; // Or "yandex", "libre", "deepl"
-translate.key = process.env.GOOGLE_KEY;
+translate.engine = "deepl";
+translate.key = process.env.DEEPL_KEY;
 
 const text = await translate("Hello world", "es");
 console.log("Hola mundo");
@@ -32,11 +32,11 @@ Alternatively for the browser you can use [Jsdelivr **CDN**](https://www.jsdeliv
 <script src="https://cdn.jsdelivr.net/npm/translate@1/translate.min.js"></script>
 ```
 
-After including translate the usage is similar for both Node.js and the browser. Now you have to set which engine you want to use, and the key for it:
+After including translate the usage is similar for both Node.js and the browser. Now you have to set which engine you want to use (default is 'google'), and the key for it if needed:
 
 ```js
-translate.engine = "google"; // Or "yandex", "libre", "deepl"
-translate.key = process.env.GOOGLE_KEY;
+translate.engine = "yandex"; // Or "yandex", "libre", "deepl"
+translate.key = process.env.YANDEX_KEY;
 ```
 
 Then you can finally use it. Putting it all together:
@@ -104,7 +104,7 @@ Once you get the API key and if you are only going to be using one engine (very 
 ```js
 // ... include translate
 
-translate.engine = "google";
+translate.engine = "deepl";
 translate.key = "YOUR-KEY-HERE";
 
 // ... use translate()
@@ -115,7 +115,7 @@ If you are in Node.js, this likely comes from an environment variable:
 ```js
 // ... include translate
 
-translate.engine = "google";
+translate.engine = "deepl";
 translate.key = process.env.TRANSLATE_KEY;
 
 // ... use translate()
@@ -124,7 +124,7 @@ translate.key = process.env.TRANSLATE_KEY;
 To pass it per-translation, you can add it to your arguments:
 
 ```js
-translate("Hello world", { to: "en", engine: "google", key: "YOUR-KEY-HERE" });
+translate("Hello world", { to: "en", engine: "deepl", key: "YOUR-KEY-HERE" });
 ```
 
 Specifically in Libretranslate, you can also add a `url` parameter if you install it on your own server:

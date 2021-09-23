@@ -12,12 +12,12 @@ describe("yandex mocked requests", () => {
       { code: 500, message: "also fails harder" },
       { throws: true }
     );
-    mock(/yandex.*&lang=[a-z]*\-es/, { code: 200, text: ["Hola de Yandex"] });
   });
 
   afterEach(() => mock.end());
 
   it("works with a simple request", async () => {
+    mock.yandex("Hola de Yandex");
     const spanish = await translate("Hello from Yandex", {
       to: "es",
       engine: "yandex"
@@ -42,7 +42,7 @@ describe("yandex full requests", () => {
   });
 
   if (!process.env.YANDEX_KEY || process.env.YANDEX_KEY === "xxx") {
-    return console.warn("Yandex [PAID] tests skipped");
+    return console.log("Yandex [PAID] tests skipped");
   }
 
   it("calls Yandex to translate to Japanese", async () => {

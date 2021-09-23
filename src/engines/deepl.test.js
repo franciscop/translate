@@ -9,7 +9,7 @@ describe("deepl full requests", () => {
   });
 
   if (!process.env.DEEPL_KEY || process.env.DEEPL_KEY === "xxx") {
-    return console.warn("DeepL [PAID] tests skipped");
+    return console.log("DeepL [PAID] tests skipped");
   }
 
   it("calls DeepL to translate to Japanese", async () => {

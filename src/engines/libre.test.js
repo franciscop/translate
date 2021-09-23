@@ -55,7 +55,7 @@ describe("libre full requests", () => {
   });
 
   if (!process.env.LIBRE_KEY || process.env.LIBRE_KEY === "xxx") {
-    return console.warn("Libre [PAID] tests skipped");
+    return console.log("Libre [PAID] tests skipped");
   }
 
   it("calls Libre to translate to Japanese", async () => {
