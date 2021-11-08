@@ -47,4 +47,15 @@ describe("google full requests", () => {
     const opts = { to: "es", engine: "google" };
     expect(await translate("Hello world", opts)).toMatch(/Hola mundo/i);
   });
+
+  it("works with punctuation", async () => {
+    const opts = { to: "pt", engine: "google" };
+    const text = await translate(
+      "What do you call a pig that knows karate? A pork chop!",
+      opts
+    );
+    expect(text).toBe(
+      "Como você chama um porco que sabe caratê? Costeleta de porco!"
+    );
+  });
 });

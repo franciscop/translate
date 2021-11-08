@@ -6,7 +6,7 @@ export default {
   ],
   parse: res =>
     res.json().then(body => {
-      body = body && body[0] && body[0][0] && body[0][0][0];
+      body = body && body[0] && body[0][0] && body[0].map(s => s[0]).join("");
       if (!body) throw new Error("Translation not found");
       return body;
     })
