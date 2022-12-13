@@ -55,7 +55,18 @@ describe("google full requests", () => {
       opts
     );
     expect(text).toBe(
-      "Como você chama um porco que sabe caratê? Costeleta de porco!"
+      "Como você chama um porco que sabe caratê? Uma costeleta de porco!"
+    );
+  });
+
+  it("autodetects language", async () => {
+    const opts = { to: "en", engine: "google", autoDetect: true };
+    const text = await translate(
+      "Me gusta la casa",
+      opts
+    );
+    expect(text).toBe(
+      "I like the house"
     );
   });
 });

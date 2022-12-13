@@ -39,7 +39,7 @@ const Translate = function(options = {}) {
     // Note: not all of those *should* be documented since some are internal only
     if (typeof opts === "string") opts = { to: opts };
     opts.text = text;
-    opts.from = languages(opts.from || translate.from);
+    opts.from = opts.autoDetect ? 'auto' : languages(opts.from || translate.from);
     opts.to = languages(opts.to || translate.to);
     opts.cache = opts.cache || translate.cache;
     opts.engines = opts.engines || {};
