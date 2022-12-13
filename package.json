@@ -14,7 +14,8 @@
     "start": "npm run watch # Start ~= Start dev",
     "build": "rollup src/index.js --name translate --output.format umd | uglifyjs -o translate.min.js",
     "test": "jest --coverage --collectCoverageFrom=src/**/*.js",
-    "watch": "nodemon --exec \"npm run build && npm test && npm run gzip\" --watch src --watch test --watch webpack.config.js --watch package.json",
+    "test:watch": "jest --coverage --collectCoverageFrom=src/**/*.js --watch",
+    "watch": "npx nodemon --exec \"npm run build && npm test && npm run gzip\" --watch src --watch test --watch webpack.config.js --watch package.json",
     "gzip": "gzip -c translate.min.js | wc -c && echo 'bytes' # Only for Unix"
   },
   "keywords": [
