@@ -3,12 +3,12 @@
 Convert text to different languages on Node.js and the browser. Flexible package and powerful back-end using Google (default), [Yandex](https://translate.yandex.com/), [Libre](https://libretranslate.com/) or [DeepL](https://www.deepl.com/en/translator):
 
 ```js
-import translate from "translate";
+import Translation from "translate";
 
 translate.engine = "deepl";
 translate.key = process.env.DEEPL_KEY;
 
-const text = await translate("Hello world", "es");
+const text = await Translation.translate("Hello world", "es");
 console.log("Hola mundo");
 ```
 
@@ -23,7 +23,7 @@ npm install translate
 Then import it to use it:
 
 ```js
-import translate from "translate";
+import Translation from "translate";
 ```
 
 Alternatively for the browser you can use [Jsdelivr **CDN**](https://www.jsdelivr.com/package/npm/translate):
@@ -43,12 +43,12 @@ Then you can finally use it. Putting it all together:
 
 ```js
 // Omit this line if loading form a CDN
-import translate from "translate";
+import Translation from "translate";
 
 translate.engine = "deepl";// Or "google", "yandex", "libre"
 translate.key = process.env.DEEPL_KEY;
 
-const text = await translate("Hello world", "es");
+const text = await Translation.translate("Hello world", "es");
 console.log("Hola mundo");
 ```
 
@@ -69,10 +69,10 @@ Examples:
 
 ```js
 // Translate from English (default) to Spanish (specified)
-const foo = await translate("Hello world", "es");
+const foo = await Translation.translate("Hello world", "es");
 
 // Same as this:
-const bar = await translate("Hello world", { to: "es" });
+const bar = await Translation.translate("Hello world", { to: "es" });
 ```
 
 > On both `to` and `from` defaulting to `en`: while I _am_ Spanish and was quite tempted to set this as one of those, English is the main language of the Internet and the main secondary language for those who have a different native language. This is why most of the translations will happen either to or from English.
@@ -143,13 +143,13 @@ Working with Promises and specially with [async/await](https://ponyfoo.com/artic
 $("#translate").submit(async e => {
   e.preventDefault();
   const text = $(".text").text();
-  const spanish = await translate(text, { to: "es" });
+  const spanish = await Translation.translate(text, { to: "es" });
   alert(spanish);
 });
 
 // Node.js; serverjs.io example for demonstration purposes
 const route = async ctx => {
-  const spanish = await translate(ctx.body, { to: "es" });
+  const spanish = await Translation.translate(ctx.body, { to: "es" });
   return send(spanish);
 };
 ```
