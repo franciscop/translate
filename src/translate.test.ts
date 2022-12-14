@@ -1,19 +1,21 @@
-import translate from "./";
-import mock from "../test/mock";
+import TranslateClass from ".";
+import mock from "./test/mock";
 import fs from "fs";
 
 // Quickly load .env files into the environment
-require("dotenv").load();
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 describe("translate.js", () => {
   afterEach(() => mock.end());
 
   it("loads", () => {
-    expect(translate).toBeDefined();
+    expect(TranslateClass).toBeDefined();
   });
 
   it("returns a promise", () => {
-    const ret = translate("Hello world");
+    const ret = TranslateClass.translate("Hello world");
     expect(ret instanceof Promise).toBe(true);
   });
 
@@ -23,13 +25,13 @@ describe("translate.js", () => {
   });
 
   it("accepts full language names", async () => {
-    const es = await translate("Hello world", {
+    const es = await TranslateClass.translate("Hello world", {
       from: "English",
       to: "Spanish"
     });
     expect(es).toMatch(/Hola mundo/i);
 
-    const jp = await translate("Hello world", {
+    const jp = await TranslateClass.translate("Hello world", {
       from: "English",
       to: "Japanese"
     });
@@ -37,12 +39,12 @@ describe("translate.js", () => {
   });
 
   it("accepts weird casing for language names", async () => {
-    const es = await translate("Hello world", {
+    const es = await TranslateClass.translate("Hello world", {
       from: "english",
       to: "spaNish"
     });
     expect(es).toMatch(/Hola mundo/i);
-    const jp = await translate("Hello world", {
+    const jp = await TranslateClass.translate("Hello world", {
       from: "ENGLISH",
       to: "JapAnesE"
     });
@@ -52,18 +54,15 @@ describe("translate.js", () => {
 
 describe("Independent", () => {
   it("has independent instances", () => {
-    const translate2 = new translate.Translate();
-    translate.keys.madeup = "a";
-    translate2.keys.madeup = "b";
-    expect(translate.keys.madeup).toBe("a");
-    expect(translate2.keys.madeup).toBe("b");
+    TranslateClass.keys.madeup = "a";
+    expect(TranslateClass.keys.madeup).toBe("a");
+    TranslateClass.keys.madeup = "b";
+    expect(TranslateClass.keys.madeup).toBe("b");
   });
 
   it("is auto initialized", () => {
-    let inst = translate.Translate();
-    expect(inst.from).toBe("en");
-    inst = new translate.Translate();
-    expect(inst.from).toBe("en");
+    expect(TranslateClass.from).toBe("en");
+    expect(TranslateClass.from).toBe("en");
   });
 
   it.skip("fixed the bug #5", async () => {
@@ -71,6 +70,6 @@ describe("Independent", () => {
     const options = { to: "ja", keys: { yandex: "def" }, engine: "google" };
 
     // This will wrongly ignore the key for "google"
-    expect(await translate("Hello world", options)).toBe("こんにちは世界");
+    expect(await TranslateClass.translate("Hello world", options as any)).toBe("こんにちは世界");
   });
 });

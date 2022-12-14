@@ -71,3 +71,5 @@ typings/
 
 # This is a library so don't include it
 package-lock.json
+dist/
+build/

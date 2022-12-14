@@ -1,4 +1,6 @@
-export default {
+import { EngineType } from 'engines';
+
+const deeplEngine: EngineType = {
   needkey: true,
   fetch: ({ key, from, to, text }) => {
     const suffix = /:fx$/.test(key) ? "-free" : "";
@@ -18,3 +20,5 @@ export default {
     return res.json().then(body => body.translations[0].text);
   }
 };
+
+export default deeplEngine

@@ -1,58 +1,59 @@
 import "dotenv/config";
-import translate from "../../src";
-import mock from "../../test/mock.js";
+import TranslateClass from "..";
+import mock from "../test/mock";
 
 describe("google mocked responses", () => {
   afterEach(() => mock.end());
 
   it("can translate a simple string", async () => {
     mock.google("Hola mundo");
-    expect(await translate("Hello world", "es")).toMatch(/Hola mundo/i);
+    expect(await TranslateClass.translate("Hello world", { to: "es" })).toMatch(/Hola mundo/i);
 
     mock.google("Hola mundo");
-    const es = await translate("Hello world", { from: "en", to: "es" });
+    const es = await TranslateClass.translate("Hello world", { from: "en", to: "es" });
     expect(es).toMatch(/Hola mundo/i);
 
     mock.google("こんにちは世界");
-    const jp = await translate("Hello world", { from: "en", to: "ja" });
+    const jp = await TranslateClass.translate("Hello world", { from: "en", to: "ja" });
     expect(jp).toBe("こんにちは世界");
   });
 
   it("will throw with a wrong language", async () => {
-    await expect(translate("Hello world", "adgdfnj")).rejects.toMatchObject({
+    await expect(TranslateClass.translate("Hello world", { to: "adgdfnj" })).rejects.toMatchObject({
       message: `The language "adgdfnj" is not part of the ISO 639-1`
     });
   });
 
   it("will throw with no response at all", async () => {
     mock.google("");
-    // console.log(await translate("What's up?", "es"));
-    await expect(translate("What's up?", "es")).rejects.toMatchObject({
+    // TODO figure out why this fails if i await it
+    await expect(TranslateClass.translate("What's up?", { to: "es" })).rejects.toMatchObject({
       message: "Translation not found"
     });
   });
 });
 
 describe("google full requests", () => {
-  it("has an engine", () => {
-    expect(translate.engines.google).toBeDefined();
-  });
+  // TODO engines is private and can't be tested this way
+  // it("has an engine", () => {
+  //   expect(TranslateClass.engines.google).toBeDefined();
+  // });
 
   it("calls Google to translate to Japanese", async () => {
     const opts = { to: "ja", engine: "google" };
-    expect(await translate("Hello world", opts)).toBe("こんにちは世界");
+    expect(await TranslateClass.translate("Hello world", opts as any)).toBe("こんにちは世界");
   });
 
   it("calls Google to translate to Spanish", async () => {
     const opts = { to: "es", engine: "google" };
-    expect(await translate("Hello world", opts)).toMatch(/Hola mundo/i);
+    expect(await TranslateClass.translate("Hello world", opts as any)).toMatch(/Hola mundo/i);
   });
 
   it("works with punctuation", async () => {
     const opts = { to: "pt", engine: "google" };
-    const text = await translate(
+    const text = await TranslateClass.translate(
       "What do you call a pig that knows karate? A pork chop!",
-      opts
+      opts as any
     );
     expect(text).toBe(
       "Como você chama um porco que sabe caratê? Uma costeleta de porco!"
@@ -61,9 +62,9 @@ describe("google full requests", () => {
 
   it("autodetects language", async () => {
     const opts = { to: "en", engine: "google", autoDetect: true };
-    const text = await translate(
+    const text = await TranslateClass.translate(
       "Me gusta la casa",
-      opts
+      opts as any
     );
     expect(text).toBe(
       "I like the house"

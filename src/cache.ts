@@ -25,7 +25,8 @@ function Cache() {
 
     var record = {
       value: value,
-      expire: time + Date.now()
+      expire: time + Date.now(),
+      timeout: undefined,
     };
 
     if (!isNaN(record.expire)) {

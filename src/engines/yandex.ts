@@ -1,4 +1,6 @@
-export default {
+import { EngineType } from 'engines';
+
+const yandexEngine: EngineType = {
   needkey: true,
   fetch: ({ key, from, to, text }) => [
     `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&lang=${from}-${to}&text=${encodeURIComponent(
@@ -14,3 +16,5 @@ export default {
       return body.text[0];
     })
 };
+
+export default yandexEngine

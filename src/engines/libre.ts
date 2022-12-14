@@ -1,6 +1,8 @@
+import { EngineType } from 'engines';
+
 const libreUrl = "https://libretranslate.com/translate";
 
-export default {
+const libreEngine: EngineType = {
   needkey: false,
   fetch: ({ url = libreUrl, key, from, to, text }) => {
     const body = JSON.stringify({
@@ -27,3 +29,5 @@ export default {
       return body.translatedText;
     })
 };
+
+export default libreEngine

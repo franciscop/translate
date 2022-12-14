@@ -1,4 +1,4 @@
-import languages from "./";
+import languages from ".";
 
 describe("language parsing", () => {
   it("works with a good language name", () => {
