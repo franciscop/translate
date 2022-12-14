@@ -5,7 +5,7 @@
 import languages from "./languages/index";
 
 // Cache the different translations to avoid resending requests
-import cache from "./cache";
+import NodeCache from 'node-cache';
 
 import engines, { EngineType } from './engines/index';
 
@@ -17,6 +17,8 @@ if (typeof fetch === "undefined") {
     console.warn("Please make sure node-fetch is available");
   }
 }
+
+const myCache = new NodeCache();
 
 type TranslateParams = {
   from?: string,
@@ -33,7 +35,7 @@ type TranslateParams = {
 const defaults = {
   from: "en",
   to: "en",
-  cache: undefined,
+  cache: 1000,
   languages: languages,
   engines: engines,
   engine: "google" as keyof typeof engines,
@@ -73,7 +75,11 @@ class TranslateClass {
     config.engine = opts?.engine || this.engine || defaults.engine;
     this.engine = config.engine
     const url = opts?.url || this.url;
-    const id = `${url}:${config.from}:${config.to}:${config.engine}:${text}`;
+    const engine: EngineType = config.engines[config.engine]
+
+    const fetchOpts = engine.fetch({ ...config, text, url});
+
+    const id = `${fetchOpts[0]}:${config.from}:${config.to}:${config.engine}:${text}`;
 
     // TODO read keys from .env or whatever and use that if there are no keys provided
 
@@ -81,11 +87,10 @@ class TranslateClass {
     // TODO: validation for few of those
 
     // Use the desired engine
-    const engine: EngineType = config.engines[config.engine]
+
     // If it is cached return ASAP
-    const cached = cache.get(id);
+    const cached = myCache.get(id);
     if (cached) {
-      console.log('returning cached', cached, text, id)
       return Promise.resolve(cached);
     }
 
@@ -100,10 +105,12 @@ class TranslateClass {
       );
     }
 
-    const fetchOpts = engine.fetch({ ...config, text, url});
     return fetch(...fetchOpts)
       .then(engine.parse)
-      .then(translated => cache.put(id, translated, config.cache));
+      .then(translated => {
+        myCache.set(id, translated, config.cache)
+        return translated
+      });
   };
 }
 
