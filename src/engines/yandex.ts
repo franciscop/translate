@@ -1,4 +1,4 @@
-import { EngineType } from 'engines';
+import { EngineType } from './index';
 
 const yandexEngine: EngineType = {
   needkey: true,

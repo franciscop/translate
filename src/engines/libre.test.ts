@@ -33,9 +33,7 @@ describe("Libre mocked requests", () => {
   it("will throw with an empty result", async () => {
     TranslateClass.key = undefined
     const opts = { to: "es", engine: "libre", key: undefined };
-    await expect(TranslateClass.translate("What's going on?", opts as any)).rejects.toMatchObject({
-      message: "Please contact the server operator to obtain an API key"
-    });
+    await expect(TranslateClass.translate("What's going on?", opts as any)).rejects.toThrow('Visit https://portal.libretranslate.com to get an API key');
   });
 
   it("well the domain is wrong", async () => {
