@@ -82,7 +82,6 @@ class TranslateClass {
 
     // Use the desired engine
     const engine: EngineType = config.engines[config.engine]
-
     // If it is cached return ASAP
     const cached = cache.get(id);
     if (cached) {

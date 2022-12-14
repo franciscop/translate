@@ -11,14 +11,15 @@ describe("cache", () => {
 
   const delay = time => new Promise(done => setTimeout(done, time));
 
+  // TODO these tests are crappy
   it("caches", async () => {
     const before = new Date();
     await TranslateClass.translate("Is this cached?", { to: "es" });
     const mid = new Date();
     await TranslateClass.translate("Is this cached?", { to: "es" });
     const after = new Date();
-    const midBefore = mid.getDate() - before.getDate()
-    const afterMid = after.getDate() - mid.getDate()
+    const midBefore = mid.getTime() - before.getTime()
+    const afterMid = after.getTime() - mid.getTime()
     expect(midBefore).toBeLessThan(10000);
     expect(midBefore).toBeGreaterThan(100);
     expect(afterMid).toBeLessThan(10);
@@ -33,8 +34,8 @@ describe("cache", () => {
     mock(/googleapis.*tl=es/, [[["Hola mundo"]]]);
     await TranslateClass.translate("Is this also cached?", { to: "es" });
     const after = new Date();
-    const midBefore = mid.getDate() - before.getDate()
-    const afterMid = after.getDate() - mid.getDate()
+    const midBefore = mid.getTime() - before.getTime()
+    const afterMid = after.getTime() - mid.getTime()
     expect(midBefore).toBeLessThan(10000);
     expect(midBefore).toBeGreaterThan(100);
     expect(afterMid).toBeLessThan(10000);

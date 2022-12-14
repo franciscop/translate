@@ -1,4 +1,4 @@
-import { EngineType } from 'engines';
+import { EngineType } from './index';
 
 const base = "https://translate.googleapis.com/translate_a/single";
 
