@@ -11,4 +11,6 @@ declare module "translate" {
       keys: object;
     }
   ): Promise<any>;
+  
+  export = translate;
 }
