@@ -8,7 +8,6 @@
   "funding": "https://www.paypal.me/franciscopresencia/19",
   "author": "Francisco Presencia <public@francisco.io> (https://francisco.io/)",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "start": "npm run watch # Start ~= Start dev",
     "build": "rollup src/index.js --name translate --output.format umd | terser --compress --mangle -o index.min.js",
@@ -25,7 +24,9 @@
     "google",
     "yandex"
   ],
+  "type": "module",
   "main": "index.min.js",
+  "types": "./index.d.ts",
   "devDependencies": {
     "check-dts": "^0.7.1",
     "dotenv": "^16.0.3",
