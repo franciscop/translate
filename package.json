@@ -26,7 +26,10 @@
   ],
   "type": "module",
   "main": "index.min.js",
-  "types": "./index.d.ts",
+  "types": "index.d.ts",
+  "files": [
+    "index.d.ts"
+  ],
   "devDependencies": {
     "check-dts": "^0.7.1",
     "dotenv": "^16.0.3",

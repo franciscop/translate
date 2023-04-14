@@ -9,7 +9,8 @@ translate.engine = "deepl";
 translate.key = process.env.DEEPL_KEY;
 
 const text = await translate("Hello world", "es");
-console.log("Hola mundo");
+console.log(text);
+// "Hola mundo"
 ```
 
 ## Getting started
@@ -45,11 +46,12 @@ Then you can finally use it. Putting it all together:
 // Omit this line if loading form a CDN
 import translate from "translate";
 
-translate.engine = "deepl"; // Or "yandex", "libre", "deepl"
+translate.engine = "deepl"; // "google", "yandex", "libre", "deepl"
 translate.key = process.env.DEEPL_KEY;
 
 const text = await translate("Hello world", "es");
-console.log("Hola mundo");
+console.log(text);
+// "Hola mundo"
 ```
 
 ## Options
@@ -95,7 +97,7 @@ Several translating engines are available to translate your text:
 - **`google`**: ([demo](https://translate.google.com/) | [docs](https://cloud.google.com/translate/docs/)): Google Translate.
 - **`yandex`**: ([demo](https://translate.yandex.com/) | [docs](https://tech.yandex.com/translate/) | [API Key](https://translate.yandex.com/developers/keys)): Yandex Translate
 - **`libre`**: ([demo](https://libretranslate.com/)): An independent translation engine. You can use the official website or install it on your own server.
-- **`deepl`**: ([demo](https://www.deepl.com/en/translator)): A rapidly growing popular translation engine built wit Machine Learning.
+- **`deepl`**: ([demo](https://www.deepl.com/en/translator)): A rapidly growing popular translation engine built with Machine Learning.
 
 > To get the API Key you will be signing some contract with these services; it's your responsibility to follow these and we are not liable if you don't as explained in our MIT License.
 
