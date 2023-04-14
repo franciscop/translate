@@ -1,9 +1,7 @@
+import "dotenv/config";
 import translate from "./";
 import mock from "../test/mock";
 import fs from "fs";
-
-// Quickly load .env files into the environment
-require("dotenv").load();
 
 describe("translate.js", () => {
   afterEach(() => mock.end());
@@ -18,20 +16,20 @@ describe("translate.js", () => {
   });
 
   it("is smaller than 20kb (uncompressed)", () => {
-    const details = fs.statSync(process.cwd() + "/translate.min.js");
-    expect(details.size).toBeLessThan(20000);
+    const details = fs.statSync(process.cwd() + "/index.min.js");
+    expect(details.size).toBeLessThan(10000);
   });
 
   it("accepts full language names", async () => {
     const es = await translate("Hello world", {
       from: "English",
-      to: "Spanish"
+      to: "Spanish",
     });
     expect(es).toMatch(/Hola mundo/i);
 
     const jp = await translate("Hello world", {
       from: "English",
-      to: "Japanese"
+      to: "Japanese",
     });
     expect(jp).toBe("こんにちは世界");
   });
@@ -39,14 +37,22 @@ describe("translate.js", () => {
   it("accepts weird casing for language names", async () => {
     const es = await translate("Hello world", {
       from: "english",
-      to: "spaNish"
+      to: "spaNish",
     });
     expect(es).toMatch(/Hola mundo/i);
     const jp = await translate("Hello world", {
       from: "ENGLISH",
-      to: "JapAnesE"
+      to: "JapAnesE",
     });
     expect(jp).toBe("こんにちは世界");
+  });
+
+  it("requires the key", async () => {
+    await expect(() =>
+      translate("hello", { engine: "yandex", key: false, to: "es" })
+    ).rejects.toMatchObject({
+      message: 'The engine "yandex" needs a key, please provide it',
+    });
   });
 });
 

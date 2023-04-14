@@ -1,23 +1,24 @@
 // Relevant ISO: ISO 639-1 & ISO 639-2. Google uses the ISO 639-1.
 // Valid ISO 639-1 codes
 // https://www.loc.gov/standards/iso639-2/php/code_list.php
-// Extract these with this code (after loading https://superdom.site/ )
+// Extract these with this code (after loading https://www.npmjs.com/package/superdom )
 // [...dom.table[1].querySelectorAll('tbody tr')].slice(1).filter(row => !/^\s*$/.test(row.querySelector('td:nth-child(2)').textContent)).map((row, i) => `"${row.querySelector('td:nth-child(2)').textContent}", ${i % 12 === 11 ? '\n' : ''}`).join('');
+
+// ISO-639-2 list is THE SAME as the values of ISO-639-1 (sorted)
+// so we don't need to include both lists!
 import iso from "./iso";
+const isoKeys = Object.values(iso).sort();
 
-// Parsed from here: https://github.com/wooorm/iso-639-2/blob/master/index.json
-import iso2 from "./iso2";
-
-// Extract these with this code (after loading https://superdom.site/ ) + a lot of manual clean up
+// Extract these with this code (after loading https://www.npmjs.com/package/superdom ) + a lot of manual clean up
 // [...dom.table[1].querySelectorAll('tbody tr')].slice(1).filter(row => !/^\s*$/.test(row.querySelector('td:nth-child(2)').textContent)).map(row =>
 //   `  "${row.querySelector('td:nth-child(3)').textContent.toLowerCase()}": "${row.querySelector('td:nth-child(2)').textContent.toLowerCase()}",`
 // ).join('\n');
-import map from "./names";
+import names from "./names";
 
 // Language parser
 //   @name: a string to be parsed
 //   @output: the normalized language string
-export default name => {
+export default (name) => {
   // Validate the name string
   if (typeof name !== "string") {
     throw new Error(`The "language" must be a string, received ${typeof name}`);
@@ -31,10 +32,10 @@ export default name => {
   name = name.toLowerCase();
 
   // Pass it through several possible maps to try to find the right one
-  name = map[name] || iso2[name] || name;
+  name = names[name] || iso[name] || name;
 
   // Make sure we have the correct name or throw
-  if (!iso.includes(name)) {
+  if (!isoKeys.includes(name)) {
     throw new Error(`The language "${name}" is not part of the ISO 639-1`);
   }
   return name;

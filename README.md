@@ -1,6 +1,6 @@
-# Translate
+# Translate [![npm install translate](https://img.shields.io/badge/npm%20install-translate-blue.svg "install badge")](https://www.npmjs.com/package/translate) [![test badge](https://github.com/franciscop/translate/workflows/tests/badge.svg "test badge")](https://github.com/franciscop/translate/blob/master/.github/workflows/tests.yml) [![gzip size](https://img.badgesize.io/franciscop/translate/master/index.min.js.svg?compression=gzip "gzip badge")](https://github.com/franciscop/translate/blob/master/index.min.js)
 
-Convert text to different languages on Node.js and the browser. Flexible package and powerful back-end using Google (default), [Yandex](https://translate.yandex.com/), [Libre](https://libretranslate.com/) or [DeepL](https://www.deepl.com/en/translator):
+Convert text to different languages on Node.js and the browser. Flexible package that allows you to use Google (default), [Yandex](https://translate.yandex.com/), [Libre](https://libretranslate.com/) or [DeepL](https://www.deepl.com/en/translator):
 
 ```js
 import translate from "translate";
@@ -29,14 +29,14 @@ import translate from "translate";
 Alternatively for the browser you can use [Jsdelivr **CDN**](https://www.jsdelivr.com/package/npm/translate):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/translate@1/translate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/translate@2/index.min.js"></script>
 ```
 
 After including translate the usage is similar for both Node.js and the browser. Now you have to set which engine you want to use (default is 'google'), and the key for it if needed:
 
 ```js
-translate.engine = "yandex"; // Or "yandex", "libre", "deepl"
-translate.key = process.env.YANDEX_KEY;
+translate.engine = "deepl"; // "google", "yandex", "libre", "deepl"
+translate.key = process.env.DEEPL_KEY;
 ```
 
 Then you can finally use it. Putting it all together:
@@ -45,8 +45,8 @@ Then you can finally use it. Putting it all together:
 // Omit this line if loading form a CDN
 import translate from "translate";
 
-translate.engine = "google"; // Or "yandex", "libre", "deepl"
-translate.key = process.env.GOOGLE_KEY;
+translate.engine = "deepl"; // Or "yandex", "libre", "deepl"
+translate.key = process.env.DEEPL_KEY;
 
 const text = await translate("Hello world", "es");
 console.log("Hola mundo");
@@ -140,7 +140,7 @@ Working with Promises and specially with [async/await](https://ponyfoo.com/artic
 
 ```js
 // Browser; jQuery for demonstration purposes
-$("#translate").submit(async e => {
+$("#translate").submit(async (e) => {
   e.preventDefault();
   const text = $(".text").text();
   const spanish = await translate(text, { to: "es" });
@@ -148,7 +148,7 @@ $("#translate").submit(async e => {
 });
 
 // Node.js; serverjs.io example for demonstration purposes
-const route = async ctx => {
+const route = async (ctx) => {
   const spanish = await translate(ctx.body, { to: "es" });
   return send(spanish);
 };

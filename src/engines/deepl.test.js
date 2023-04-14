@@ -1,5 +1,5 @@
-import translate from "../../src";
 import "dotenv/config";
+import translate from "../../src";
 
 translate.keys.deepl = process.env.DEEPL_KEY || "xxx";
 
@@ -19,7 +19,7 @@ describe("deepl full requests", () => {
 
   it("calls DeepL to translate to Spanish", async () => {
     const opts = { to: "es", engine: "deepl" };
-    expect(await translate("Hello world", opts)).toBe("Hola, mundo");
+    expect(await translate("Hello world", opts)).toBe("Hola mundo");
   });
 
   it("requires a valid key", async () => {

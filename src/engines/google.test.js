@@ -20,7 +20,7 @@ describe("google mocked responses", () => {
 
   it("will throw with a wrong language", async () => {
     await expect(translate("Hello world", "adgdfnj")).rejects.toMatchObject({
-      message: `The language "adgdfnj" is not part of the ISO 639-1`
+      message: `The language "adgdfnj" is not part of the ISO 639-1`,
     });
   });
 
@@ -28,7 +28,7 @@ describe("google mocked responses", () => {
     mock.google("");
     // console.log(await translate("What's up?", "es"));
     await expect(translate("What's up?", "es")).rejects.toMatchObject({
-      message: "Translation not found"
+      message: "Translation not found",
     });
   });
 });
@@ -55,7 +55,7 @@ describe("google full requests", () => {
       opts
     );
     expect(text).toBe(
-      "Como você chama um porco que sabe caratê? Costeleta de porco!"
+      "Como você chama um porco que sabe caratê? Uma costeleta de porco!"
     );
   });
 });

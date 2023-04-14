@@ -3,17 +3,12 @@ function Cache() {
   var _cache = Object.create(null);
   var _size = 0;
 
-  this.put = function(key, value, time, timeoutCallback) {
+  this.set = function (key, value, time) {
     if (
       typeof time !== "undefined" &&
       (typeof time !== "number" || isNaN(time) || time <= 0)
     ) {
       throw new Error("Cache timeout must be a positive number");
-    } else if (
-      typeof timeoutCallback !== "undefined" &&
-      typeof timeoutCallback !== "function"
-    ) {
-      throw new Error("Cache timeout callback must be a function");
     }
 
     var oldRecord = _cache[key];
@@ -25,19 +20,11 @@ function Cache() {
 
     var record = {
       value: value,
-      expire: time + Date.now()
+      expire: time + Date.now(),
     };
 
     if (!isNaN(record.expire)) {
-      record.timeout = setTimeout(
-        function() {
-          _del(key);
-          if (timeoutCallback) {
-            timeoutCallback(key, value);
-          }
-        }.bind(this),
-        time
-      );
+      record.timeout = setTimeout(() => _del(key), time);
     }
 
     _cache[key] = record;
@@ -45,7 +32,7 @@ function Cache() {
     return value;
   };
 
-  this.del = function(key) {
+  this.del = function (key) {
     var canDelete = true;
 
     var oldRecord = _cache[key];
@@ -70,7 +57,7 @@ function Cache() {
     delete _cache[key];
   }
 
-  this.clear = function() {
+  this.clear = function () {
     for (var key in _cache) {
       clearTimeout(_cache[key].timeout);
     }
@@ -78,7 +65,7 @@ function Cache() {
     _cache = Object.create(null);
   };
 
-  this.get = function(key) {
+  this.get = function (key) {
     var data = _cache[key];
     if (typeof data != "undefined") {
       if (isNaN(data.expire) || data.expire >= Date.now()) {

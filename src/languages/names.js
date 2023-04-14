@@ -217,5 +217,5 @@ export default {
   yoruba: "yo",
   zhuang: "za",
   chuang: "za",
-  zulu: "zu"
+  zulu: "zu",
 };

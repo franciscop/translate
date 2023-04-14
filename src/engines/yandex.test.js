@@ -20,7 +20,7 @@ describe("yandex mocked requests", () => {
     mock.yandex("Hola de Yandex");
     const spanish = await translate("Hello from Yandex", {
       to: "es",
-      engine: "yandex"
+      engine: "yandex",
     });
     expect(spanish).toMatch(/Hola de Yandex/i);
   });

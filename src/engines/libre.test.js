@@ -17,7 +17,7 @@ describe("Libre mocked requests", () => {
   it("will throw with a wrong language", async () => {
     const opts = { to: "adgdfnj", engine: "libre" };
     await expect(translate("Hello world", opts)).rejects.toMatchObject({
-      message: `The language "adgdfnj" is not part of the ISO 639-1`
+      message: `The language "adgdfnj" is not part of the ISO 639-1`,
     });
   });
 
@@ -25,14 +25,14 @@ describe("Libre mocked requests", () => {
     mock.libre("");
     const opts = { to: "es", engine: "libre" };
     await expect(translate("What's going on?", opts)).rejects.toMatchObject({
-      message: "No response found"
+      message: "No response found",
     });
   });
 
-  it("will throw with an empty result", async () => {
+  it("requires an API key", async () => {
     const opts = { to: "es", engine: "libre" };
     await expect(translate("What's going on?", opts)).rejects.toMatchObject({
-      message: "Please contact the server operator to obtain an API key"
+      message: "Visit https://portal.libretranslate.com to get an API key",
     });
   });
 
@@ -42,7 +42,7 @@ describe("Libre mocked requests", () => {
     translate.url = "https://example.com/";
     const opts = { to: "es", engine: "libre" };
     await expect(translate("Hello world", opts)).rejects.toMatchObject({
-      message: "no domain"
+      message: "no domain",
     });
   });
 });

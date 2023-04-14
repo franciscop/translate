@@ -7,14 +7,14 @@ export default {
       q: text,
       source: from,
       target: to,
-      api_key: key
+      api_key: key,
     });
     const headers = { "Content-Type": "application/json" };
 
     return [url, { method: "POST", body, headers }];
   },
-  parse: res =>
-    res.json().then(body => {
+  parse: (res) =>
+    res.json().then((body) => {
       if (!body) {
         throw new Error("No response found");
       }
@@ -25,5 +25,5 @@ export default {
         throw new Error("No response found");
       }
       return body.translatedText;
-    })
+    }),
 };

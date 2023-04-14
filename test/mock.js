@@ -1,7 +1,7 @@
 // Utility method to mock responses from fetch()
-const fetchMock = require("fetch-mock");
+import fetchMock from "fetch-mock";
 
-const delay = time => new Promise(done => setTimeout(done, time));
+const delay = (time) => new Promise((done) => setTimeout(done, time));
 
 const mock = (url, body, { throws } = {}) => {
   const callback = async () => {
@@ -30,4 +30,4 @@ mock.end = () => {
   fetchMock.resetBehavior();
 };
 
-module.exports = mock;
+export default mock;

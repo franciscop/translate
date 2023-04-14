@@ -9,17 +9,8 @@ import cache from "./cache.js";
 
 import engines from "./engines/index.js";
 
-// Will load only for Node.js and use the native function on the browser
-if (typeof fetch === "undefined") {
-  try {
-    global.fetch = require("node-fetch");
-  } catch (error) {
-    console.warn("Please make sure node-fetch is available");
-  }
-}
-
 // Main function
-const Translate = function(options = {}) {
+const Translate = function (options = {}) {
   if (!(this instanceof Translate)) {
     return new Translate(options);
   }
@@ -31,7 +22,7 @@ const Translate = function(options = {}) {
     languages: languages,
     engines: engines,
     engine: "google",
-    keys: {}
+    keys: {},
   };
 
   const translate = async (text, opts = {}) => {
@@ -55,8 +46,6 @@ const Translate = function(options = {}) {
     }
     opts.key = opts.key || translate.key || opts.keys[opts.engine];
 
-    // TODO: validation for few of those
-
     // Use the desired engine
     const engine = opts.engines[opts.engine] || translate.engines[opts.engine];
 
@@ -78,7 +67,7 @@ const Translate = function(options = {}) {
     const fetchOpts = engine.fetch(opts);
     return fetch(...fetchOpts)
       .then(engine.parse)
-      .then(translated => cache.put(opts.id, translated, opts.cache));
+      .then((translated) => cache.set(opts.id, translated, opts.cache));
   };
 
   for (let key in defaults) {
