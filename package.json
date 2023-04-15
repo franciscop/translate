@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run watch # Start ~= Start dev",
-    "build": "rollup src/index.js --name translate --output.format umd | terser --compress --mangle -o index.min.js",
+    "build": "rollup src/index.js --name translate --output.format esm | terser --compress --mangle -o index.min.js",
     "size": "gzip -c index.min.js | wc -c && echo 'bytes' # Only for Unix",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --collectCoverageFrom=src/**/*.js && npx check-dts",
     "watch": "nodemon --exec \"npm run build && npm test && npm run gzip\" --watch src --watch test --watch webpack.config.js --watch package.json"

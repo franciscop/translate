@@ -2,6 +2,7 @@
 
 ## v2
 
+- (v2.0.1) Fix: actual ESM module
 - Added types definitions and types tests with `check-dts`.
 - [breaking] Removed `node-fetch` peer dependency and requiring Node 18+. For lower Node versions, use `translate@1` + `node-fetch`. No changes in the browser.
 - Renamed cache required param from `cache.put()` to `cache.set()`

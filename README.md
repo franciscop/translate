@@ -27,10 +27,13 @@ Then import it to use it:
 import translate from "translate";
 ```
 
-Alternatively for the browser you can use [Jsdelivr **CDN**](https://www.jsdelivr.com/package/npm/translate):
+Alternatively for the browser you can use [Jsdelivr **CDN**](https://www.jsdelivr.com/package/npm/translate) with the UMD export:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/translate@2/index.min.js"></script>
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/translate@2/index.min.js"
+></script>
 ```
 
 After including translate the usage is similar for both Node.js and the browser. Now you have to set which engine you want to use (default is 'google'), and the key for it if needed:
