@@ -24,4 +24,7 @@ type Options =
       engines?: { [name: string]: Engine };
     };
 
-export default function Translate(text: string, options: Options): string;
+export default function Translate(
+  text: string,
+  options?: Options
+): Promise<string>;

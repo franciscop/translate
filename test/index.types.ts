@@ -1,7 +1,7 @@
 import translate from "../";
 
 // Don't even need to run it to test the types!
-function tests() {
+async function tests() {
   translate("hello world", "es");
   // translate("hello world", { abc: "def" });
   translate("hello world", { from: "en" });
@@ -21,6 +21,9 @@ function tests() {
       },
     },
   });
+
+  const text: string = await translate("hello");
+  console.log(text);
 }
 
 // To make TS happy that we "use" the function
