@@ -31,6 +31,7 @@ export default {
   chamorro: "ch",
   chechen: "ce",
   chinese: "zh",
+  "traditional chinese": "zh-tw",
   "church slavic": "cu",
   "old slavonic": "cu",
   "church slavonic": "cu",

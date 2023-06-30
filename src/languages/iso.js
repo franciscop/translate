@@ -182,5 +182,6 @@ export default {
   yid: "yi",
   yor: "yo",
   zha: "za",
+  zhtw: "zh-tw"
   zul: "zu",
 };
