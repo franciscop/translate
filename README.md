@@ -84,6 +84,20 @@ const bar = await translate("Hello world", { to: "es" });
 
 ### Default options
 
+The initial options are set in the library and can be overridden. These are the default options:
+```
+const defaults = {
+    from: "en",
+    to: "en",
+    cache: undefined,
+    languages: languages,
+    engines: engines,
+    engine: "google",
+    detectSourceLanguage: false, // Only for deepl
+    keys: {},
+  };
+```
+
 You can change the default options for anything by calling the root library and the option name:
 
 ```js
@@ -92,6 +106,13 @@ translate.engine = "deepl";
 ```
 
 This can be applied to any of the options enumerated above.
+
+### Using automatic source language detection (only for deepl)
+```js
+translate.detectSourceLanguage = true;
+// or
+translate("Hello world", { detectSourceLanguage: true, to: "es" });
+```
 
 ## Engines
 

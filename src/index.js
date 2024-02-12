@@ -22,6 +22,7 @@ const Translate = function (options = {}) {
     languages: languages,
     engines: engines,
     engine: "google",
+    detectSourceLanguage: false,
     keys: {},
   };
 
@@ -33,6 +34,7 @@ const Translate = function (options = {}) {
     opts.from = languages(opts.from || translate.from);
     opts.to = languages(opts.to || translate.to);
     opts.cache = opts.cache || translate.cache;
+    opts.detectSourceLanguage = opts.detectSourceLanguage || translate.detectSourceLanguage;
     opts.engines = opts.engines || {};
     opts.engine = opts.engine || translate.engine;
     opts.url = opts.url || translate.url;
@@ -45,6 +47,16 @@ const Translate = function (options = {}) {
       opts.keys[name] = opts.keys[name] || translate.keys[name];
     }
     opts.key = opts.key || translate.key || opts.keys[opts.engine];
+
+    if(opts.detectSourceLanguage) {
+      if(opts.engine !== "deepl"){
+        throw new Error(
+            `Fot the engine "${opts.engine}" is automatically detecting the source language not supported yet`
+        );
+      }
+
+      opts.from = null;
+    }
 
     // Use the desired engine
     const engine = opts.engines[opts.engine] || translate.engines[opts.engine];

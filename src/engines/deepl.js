@@ -3,8 +3,16 @@ export default {
   fetch: ({ key, from, to, text }) => {
     const suffix = /:fx$/.test(key) ? "-free" : "";
     text = encodeURIComponent(text);
+    let url = `https://api${suffix}.deepl.com/v2/translate?auth_key=${key}`;
+
+    if (from !== null) {
+        url += `&source_lang=${from}`;
+    }
+
+    url += `&target_lang=${to}&text=${text}`;
+
     return [
-      `https://api${suffix}.deepl.com/v2/translate?auth_key=${key}&source_lang=${from}&target_lang=${to}&text=${text}`,
+        url,
       { method: "POST", body: "" },
     ];
   },
