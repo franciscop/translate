@@ -1,7 +1,9 @@
 import "dotenv/config";
-import translate from "./";
-import mock from "../test/mock";
+
 import fs from "fs";
+
+import mock from "../test/mock";
+import translate from "./";
 
 describe("translate.js", () => {
   afterEach(() => mock.end());
@@ -47,12 +49,17 @@ describe("translate.js", () => {
     expect(jp).toBe("こんにちは世界");
   });
 
-  it("requires the key", async () => {
+  it("does not accept other keys", async () => {
     await expect(() =>
-      translate("hello", { engine: "yandex", key: false, to: "es" })
-    ).rejects.toMatchObject({
-      message: 'The engine "yandex" needs a key, please provide it',
-    });
+      translate("hello", { to: "es", blabla: "blu" })
+    ).rejects.toThrow("Invalid option with the name 'blabla'");
+  });
+
+  it("requires the key", async () => {
+    const yandex = translate.Translate({ engine: "yandex", key: false });
+    await expect(() => yandex("hello", "es")).rejects.toThrow(
+      'The engine "yandex" needs a key, please provide it'
+    );
   });
 });
 
@@ -72,11 +79,14 @@ describe("Independent", () => {
     expect(inst.from).toBe("en");
   });
 
-  it.skip("fixed the bug #5", async () => {
-    // translate.keys = { google: 'abc' };
-    const options = { to: "ja", keys: { yandex: "def" }, engine: "google" };
-
-    // This will wrongly ignore the key for "google"
-    expect(await translate("Hello world", options)).toBe("こんにちは世界");
+  it("cannot poison the cache", async () => {
+    const options = {
+      id: "undefined:en:nl:google:I love you",
+      from: "en",
+      to: "ja",
+    };
+    await expect(() => translate("hello", options)).rejects.toThrow(
+      "Invalid option with the name 'id'"
+    );
   });
 });

@@ -1,4 +1,4 @@
-import translate from "../";
+import translate from "..";
 
 // Don't even need to run it to test the types!
 async function tests() {

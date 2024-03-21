@@ -1,6 +1,9 @@
 import "dotenv/config";
-import translate from "../../src";
+
+import t from "../../src";
 import mock from "../../test/mock.js";
+
+const translate = t.Translate({ engine: "google" });
 
 describe("google mocked responses", () => {
   afterEach(() => mock.end());
@@ -39,17 +42,17 @@ describe("google full requests", () => {
   });
 
   it("calls Google to translate to Japanese", async () => {
-    const opts = { to: "ja", engine: "google" };
+    const opts = { to: "ja" };
     expect(await translate("Hello world", opts)).toBe("こんにちは世界");
   });
 
   it("calls Google to translate to Spanish", async () => {
-    const opts = { to: "es", engine: "google" };
+    const opts = { to: "es" };
     expect(await translate("Hello world", opts)).toMatch(/Hola mundo/i);
   });
 
   it("works with punctuation", async () => {
-    const opts = { to: "pt", engine: "google" };
+    const opts = { to: "pt" };
     const text = await translate(
       "What do you call a pig that knows karate? A pork chop!",
       opts

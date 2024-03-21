@@ -1,7 +1,7 @@
 export default {
   needkey: true,
   fetch: ({ key, from, to, text }) => {
-    const suffix = /:fx$/.test(key) ? "-free" : "";
+    const suffix = key.endsWith(":fx") ? "-free" : "";
     text = encodeURIComponent(text);
     return [
       `https://api${suffix}.deepl.com/v2/translate?auth_key=${key}&source_lang=${from}&target_lang=${to}&text=${text}`,

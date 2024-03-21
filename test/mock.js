@@ -23,7 +23,7 @@ mock.libre = (content, opts) => {
 };
 
 mock.yandex = (content, opts) => {
-  mock(/yandex.*&lang=[a-z]*\-es/, { code: 200, text: [content] }, opts);
+  mock(/yandex.*&lang=[a-z]*-es/, { code: 200, text: [content] }, opts);
 };
 
 mock.end = () => {

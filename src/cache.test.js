@@ -35,12 +35,13 @@ describe("cache", () => {
   });
 
   it("removes cache after the time is out", async () => {
+    const t = translate.Translate({ cache: 1000 });
     const before = new Date();
-    await translate("Is this also cached?", { to: "es", cache: 1000 });
+    await t("Is this also cached?", { to: "es" });
     const mid = new Date();
     await delay(1100);
     mock(/googleapis.*tl=es/, [[["Hola mundo"]]]);
-    await translate("Is this also cached?", { to: "es" });
+    await t("Is this also cached?", { to: "es" });
     const after = new Date();
     expect(mid - before).toBeLessThan(10000);
     expect(mid - before).toBeGreaterThan(100);
