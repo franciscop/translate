@@ -84,3 +84,4 @@ const Translate = function (options = {}) {
 const exp = new Translate();
 exp.Translate = Translate;
 export default exp;
+export { Translate };

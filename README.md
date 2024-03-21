@@ -32,7 +32,7 @@ Alternatively for the browser you can use [Jsdelivr **CDN**](https://www.jsdeliv
 ```html
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/npm/translate@2/index.min.js"
+  src="https://cdn.jsdelivr.net/npm/translate/index.min.js"
 ></script>
 ```
 
@@ -43,7 +43,7 @@ translate.engine = "deepl"; // "google", "yandex", "libre", "deepl"
 translate.key = process.env.DEEPL_KEY;
 ```
 
-Then you can finally use it. Putting it all together:
+Then you can use it. Putting it all together:
 
 ```js
 // Omit this line if loading form a CDN
@@ -59,18 +59,23 @@ console.log(text);
 
 ## Options
 
-The first parameter is the **string** that you want to translate. Right now only a single string of text is accepted.
+Here is a list of all the options. They all can be set on the root instance like `translate[key] = value` and when creating a new instance `const t = Translate({ ... })`. The function has this signature:
 
-The second parameter is the options. It accepts either a `String` of the language to translate **to** or a simple `Object` with the keys `to` and `from`. However, in total there are more options, so here is a list of all of them:
+```js
+translate(text: string, to: string): Promise<string>
+translate(text: string, { to: string, from: string }): Promise<string>
+```
+
+These are all of the options:
 
 - **`to`**: the string of the language to translate to. It can be in any of the two ISO 639 (1 or 2) or the full name in English like `Spanish`. Defaults to **en**.
 - **`from`**: the string of the language to translate to. It can be in any of the two ISO 639 (1 or 2) or the full name in English like `Spanish`. Also defaults to **en**.
-- **`cache`** [instance]: a `Number` with the milliseconds that each translation should be cached. Leave it undefined to cache it indefinitely (until a server/browser restart).
-- **`engine`** [instance]: a `String` containing the name of the engine to use for translation. Right now it defaults to `google`. Read more [in the engine section](#engines).
-- **`key`** [instance]: the API Key for the engine of your choice. Read more [in the engine section](#engines).
-- **`url`** [instance]: only available for those engines that you can install on your own server (like Libretranslate), allows you to specify a custom endpoint for the translations. [See this issue](https://github.com/franciscop/translate/issues/26#issuecomment-845038821) for more info.
+- **`cache`** \*: a `Number` with the milliseconds that each translation should be cached. Leave it undefined to cache it indefinitely (until a server/browser restart).
+- **`engine`** \* (& `engines`): a `String` containing the name of the engine to use for translation. Right now it defaults to `google`. Read more [in the engine section](#engines).
+- **`key`** \* (& `keys`): the API Key for the engine of your choice. Read more [in the engine section](#engines).
+- **`url`** \*: only available for those engines that you can install on your own server (like Libretranslate), allows you to specify a custom endpoint for the translations. [See this issue](https://github.com/franciscop/translate/issues/26#issuecomment-845038821) for more info.
 
-> The options marked as [instance] can only be set to the root `translate.cache = 1000` or when creating a new instance `const myDeepL = translate.Translate()`
+> \* The options marked as can only be set to the root `translate.cache = 1000` or when creating a new instance `const myDeepL = translate.Translate()`, but not as the second parameter.
 
 Examples:
 
@@ -80,27 +85,43 @@ const foo = await translate("Hello world", "es");
 
 // Same as this:
 const bar = await translate("Hello world", { to: "es" });
-
-// INVALID:
-const bar = await translate("Hello world", { to: "es", engine: "google" });
 ```
-
-> On both `to` and `from` defaulting to `en`: while I _am_ Spanish and was quite tempted to set this as one of those, English is the main language of the Internet and the main secondary language for those who have a different native language. This is why most of the translations will happen either to or from English.
 
 ### Default options
 
-You can change the default options for anything by calling the root library and the option name:
+You can change the options in 3 ways. First, for the simple `from` and `to` options, set them as the second argument:
 
 ```js
+import translate from "translate";
+
+translate("Hello world", "es");
+translate("Hola mundo", { from: "en", to: "es" });
+```
+
+You can also change the default options straight on the base instance, which should be common for the shared options such as the API key, engine, etc:
+
+```js
+import translate from "translate";
+
+// Configure it, setting the "from" to "Spanish" as default!
 translate.from = "es";
 translate.engine = "deepl";
+translate.key = process.env.DEEPL_KEY;
+
+// Use it
 await translate("Hola mundo", "ja");
 ```
 
-You can also create a new instance with different default options:
+Finally, you can combine multiple instances of Translate, which is useful to have different caches, or use different engines at the same time:
 
 ```js
-const myLib = translate.Translate({ engine: 'deepl', from: 'es', ... });
+// Import the constructor
+import { Translate } from 'translate';
+
+// Create an instance
+const myLib = Translate({ engine: 'deepl', from: 'es', ... });
+
+// Use it
 await myLib("Hola mundo", "ja" );
 ```
 
@@ -118,7 +139,7 @@ Several translating engines are available to translate your text:
 Once you get the API key and if you are only going to be using one engine (very likely), we recommend setting this globally for your whole project:
 
 ```js
-// ... include translate
+import translate from "translate";
 
 translate.engine = "deepl";
 translate.key = "YOUR-KEY-HERE";
@@ -129,7 +150,7 @@ translate.key = "YOUR-KEY-HERE";
 If you are in Node.js, this likely comes from an environment variable:
 
 ```js
-// ... include translate
+import translate from "translate";
 
 translate.engine = "deepl";
 translate.key = process.env.TRANSLATE_KEY;
@@ -140,18 +161,11 @@ translate.key = process.env.TRANSLATE_KEY;
 You can create different instances if you want to combine different engines:
 
 ```js
-const gTranslate = translate.Translate({
-  engine: "google",
-  key: "YOUR-KEY-HERE",
-});
-const dTranslate = translate.Translate({
-  engine: "deepl",
-  key: "YOUR-KEY-HERE",
-});
-const lTranslate = translate.Translate({
-  engine: "libre",
-  key: "YOUR-KEY-HERE",
-});
+import { Translate } from "translate";
+
+const gTranslate = Translate({ engine: "google", key: "..." });
+const dTranslate = Translate({ engine: "deepl", key: "..." });
+const lTranslate = Translate({ engine: "libre", key: "..." });
 ```
 
 Specifically in Libretranslate, you can also add a `url` parameter if you install it on your own server:
@@ -162,7 +176,7 @@ translate.key = process.env.TRANSLATE_KEY;
 
 // or
 
-const lTranslate = translate.Translate({
+const lTranslate = Translate({
   engine: "libre",
   url: "...",
   key: "YOUR-KEY-HERE",
@@ -171,7 +185,7 @@ const lTranslate = translate.Translate({
 
 ## Promises
 
-Working with Promises and specially with [async/await](https://ponyfoo.com/articles/understanding-javascript-async-await) reduces [Callback Hell](http://callbackhell.com/). To see it in action, first you'll need an `async` function. Then put your `await` calls inside:
+This library uses promises which need to be awaited for the translated result:
 
 ```js
 // Browser; jQuery for demonstration purposes

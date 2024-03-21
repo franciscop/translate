@@ -9,22 +9,45 @@ type Engine = {
   parse: (res: { [key: string]: any }) => string;
 };
 
-type Options =
-  | string
-  | {
-      // Basic types expected for everyday use
-      from?: string;
-      to?: string;
-      key?: string;
-      engine?: "google" | "deepl" | "libre" | "yandex";
+type Options = string | { from?: string; to?: string };
 
-      // More advanced types when tweaking the library
-      keys?: { [name: string]: string };
-      cache?: number;
-      engines?: { [name: string]: Engine };
-    };
+declare const translate: {
+  (text: string, opts?: Options): Promise<string>;
 
-export default function Translate(
-  text: string,
-  options?: Options
-): Promise<string>;
+  key?: string;
+  engine?: "google" | "deepl" | "libre" | "yandex";
+
+  // More advanced types when tweaking the library
+  keys?: { [name: string]: string };
+  cache?: number;
+  engines?: { [name: string]: Engine };
+
+  Translate({}: {
+    from?: string;
+    to?: string;
+
+    key?: string;
+    engine?: "google" | "deepl" | "libre" | "yandex";
+
+    // More advanced types when tweaking the library
+    keys?: { [name: string]: string };
+    cache?: number;
+    engines?: { [name: string]: Engine };
+  }): typeof translate;
+};
+
+declare const Translate: ({}: {
+  from?: string;
+  to?: string;
+
+  key?: string;
+  engine?: "google" | "deepl" | "libre" | "yandex";
+
+  // More advanced types when tweaking the library
+  keys?: { [name: string]: string };
+  cache?: number;
+  engines?: { [name: string]: Engine };
+}) => typeof translate;
+
+export default translate;
+export { Translate };
