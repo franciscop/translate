@@ -46,7 +46,7 @@ translate.key = process.env.DEEPL_KEY;
 Then you can use it. Putting it all together:
 
 ```js
-// Omit this line if loading form a CDN
+// Omit this line if loading from a CDN
 import translate from "translate";
 
 translate.engine = "deepl"; // "google", "yandex", "libre", "deepl"
