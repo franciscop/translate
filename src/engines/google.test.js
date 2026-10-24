@@ -55,10 +55,10 @@ describe("google full requests", () => {
     const opts = { to: "pt" };
     const text = await translate(
       "What do you call a pig that knows karate? A pork chop!",
-      opts
+      opts,
     );
     expect(text).toBe(
-      "Como você chama um porco que sabe caratê? Uma costeleta de porco!"
+      "Como você chama um porco que sabe caratê? Uma costeleta de porco!",
     );
   });
 });

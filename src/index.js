@@ -30,7 +30,7 @@ const Translate = function (options = {}) {
     // Note: not all of those *should* be documented since some are internal only
     if (typeof opts === "string") opts = { to: opts };
     const invalidKey = Object.keys(opts).find(
-      (k) => k !== "from" && k !== "to"
+      (k) => k !== "from" && k !== "to",
     );
     if (invalidKey) {
       throw new Error(`Invalid option with the name '${invalidKey}'`);
@@ -63,7 +63,7 @@ const Translate = function (options = {}) {
 
     if (engine.needkey && !opts.key) {
       throw new Error(
-        `The engine "${opts.engine}" needs a key, please provide it`
+        `The engine "${opts.engine}" needs a key, please provide it`,
       );
     }
 

@@ -17,10 +17,10 @@
   ],
   "scripts": {
     "start": "bun test --watch",
-    "build": "rollup src/index.js --name translate --output.format esm | terser --compress --mangle -o index.min.js",
+    "build": "rollup src/index.js --name translate --output.format esm | terser --compress --mangle -o index.min.js && npm run build:prettier",
+    "build:prettier": "prettier --write src *.ts *.json",
     "size": "gzip -c index.min.js | wc -c && echo 'bytes' # Only for Unix",
     "test": "bun test --timeout 20000 --coverage && bunx check-dts",
-    "watch": "nodemon --exec \"npm run build && npm test && npm run gzip\" --watch src --watch test --watch webpack.config.js --watch package.json",
     "lint": "oxlint src"
   },
   "main": "index.min.js",
@@ -30,12 +30,12 @@
     "index.d.ts"
   ],
   "devDependencies": {
-    "check-dts": "^0.7.1",
-    "dotenv": "^16.0.3",
-    "fetch-mock": "^9.11.0",
-    "node-fetch": "^2.6.9",
+    "check-dts": "^2.0.1",
+    "dotenv": "^18.0.9",
+    "fetch-mock": "^12.6.0",
     "oxlint": "^1.89.0",
-    "rollup": "^3.20.2",
-    "terser": "^5.16.9"
+    "prettier": "^3.9.10",
+    "rollup": "^4.65.0",
+    "terser": "^5.51.2"
   }
 }

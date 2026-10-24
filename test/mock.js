@@ -1,6 +1,8 @@
 // Utility method to mock responses from fetch()
 import fetchMock from "fetch-mock";
 
+fetchMock.spyGlobal();
+
 const delay = (time) => new Promise((done) => setTimeout(done, time));
 
 const mock = (url, body, { throws } = {}) => {
@@ -10,8 +12,8 @@ const mock = (url, body, { throws } = {}) => {
     return body;
   };
 
-  fetchMock.getOnce(url, callback, { overwriteRoutes: true });
-  fetchMock.postOnce(url, callback, { overwriteRoutes: true });
+  fetchMock.getOnce(url, callback);
+  fetchMock.postOnce(url, callback);
 };
 
 mock.google = (content, opts) => {
@@ -27,7 +29,8 @@ mock.yandex = (content, opts) => {
 };
 
 mock.end = () => {
-  fetchMock.resetBehavior();
+  fetchMock.removeRoutes({ includeFallback: false });
+  fetchMock.clearHistory();
 };
 
 export default mock;

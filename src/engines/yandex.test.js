@@ -12,7 +12,7 @@ describe("yandex mocked requests", () => {
     mock(
       /yandex.*throw/,
       { code: 500, message: "also fails harder" },
-      { throws: true }
+      { throws: true },
     );
   });
 
