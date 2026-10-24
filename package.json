@@ -20,7 +20,8 @@
     "build": "rollup src/index.js --name translate --output.format esm | terser --compress --mangle -o index.min.js",
     "size": "gzip -c index.min.js | wc -c && echo 'bytes' # Only for Unix",
     "test": "bun test --timeout 20000 --coverage && bunx check-dts",
-    "watch": "nodemon --exec \"npm run build && npm test && npm run gzip\" --watch src --watch test --watch webpack.config.js --watch package.json"
+    "watch": "nodemon --exec \"npm run build && npm test && npm run gzip\" --watch src --watch test --watch webpack.config.js --watch package.json",
+    "lint": "oxlint src"
   },
   "main": "index.min.js",
   "type": "module",
@@ -33,6 +34,7 @@
     "dotenv": "^16.0.3",
     "fetch-mock": "^9.11.0",
     "node-fetch": "^2.6.9",
+    "oxlint": "^1.89.0",
     "rollup": "^3.20.2",
     "terser": "^5.16.9"
   }

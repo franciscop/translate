@@ -1,7 +1,7 @@
 const base = "https://translate.googleapis.com/translate_a/single";
 
 export default {
-  fetch: ({ key, from, to, text }) => [
+  fetch: ({ from, to, text }) => [
     `${base}?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`,
   ],
   parse: (res) =>
