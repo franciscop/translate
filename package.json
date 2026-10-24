@@ -1,6 +1,6 @@
 {
   "name": "translate",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Translate text to different languages on node.js and the browser",
   "repository": "github:franciscop/translate",
   "author": "Francisco Presencia <public@francisco.io> (https://francisco.io/)",
